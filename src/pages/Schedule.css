@@ -1,0 +1,207 @@
+.schedule-container {
+  --max-width: 1400px;
+}
+.heading-container {
+  padding: 1rem;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  border-top-right-radius: 30px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.schedule-heading {
+  font-family: 'F1 Bold';
+  font-size: 2.5rem;
+}
+
+/* ------------------- Next Race -------------- */
+.next-race {
+  background-color: #15151e;
+  border-color:#e10600;
+  padding: 1rem 0;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+.next-race > fieldset {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  color: white;
+  border-right: 10px solid var(--highlight-color);
+  border-top: 10px solid var(--highlight-color);
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 20px;
+}
+.next-race-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+.next-race-wrapper > div {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: .7rem;
+}
+.next-race-month,
+.grand-prix-month {
+  font-family: 'F1 Wide', sans-serif;
+  width: fit-content;
+  padding: .1rem .2rem;
+  font-size: .8rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin: .5rem 0;
+}
+.next-race-month {
+  background-color: white;
+  color: black;
+}
+.next-race-country {
+  font-family: 'F1 Bold', sans-serif;
+  text-transform: lowercase;
+  text-transform: capitalize;
+  font-size: 1.6rem;
+}
+.next-race-time > div {
+  display: grid;
+  grid-template-columns: 1fr .6fr .6fr;
+  align-items: center;
+  gap: .1rem;
+  margin: .5rem 0;
+}
+.stage-weekday {
+  font-family: Tahoma, sans-serif;
+  color: #949498;
+  font-size: .9rem;
+  font-weight: bold;
+  justify-self: center;
+}
+.stage-time {
+  background-color: #38383f;
+  padding: .2rem;
+  border-radius: 8px;
+  font-size: .9rem;
+  justify-self: center;
+}
+
+/* ------------------- Races Grid ---------------- */
+.grand-prix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .7rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.grand-prix {
+  padding: 1rem;
+}
+.grand-prix {
+  padding-top: 10px;
+  border-color:#e10600;
+  transition:.1s all ease;
+}
+.grand-prix-inner-container {
+  padding: .5rem .5rem .5rem 0;
+}
+.grand-prix-round {
+  font-family: Tahoma, sans-serif;
+  padding-right: .5rem;
+  color: var(--highlight-color);
+  transition: .2s;
+}
+.grand-prix fieldset {
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 20px;
+  position: relative;
+  transition: .2s;
+  margin-top: 20px;
+}
+.grand-prix fieldset:hover {
+  cursor: pointer;
+  border-color: var(--highlight-color);
+}
+.grand-prix fieldset:hover .grand-prix-round {
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.grand-prix-date {
+  font-family: 'F1 Wide', sans-serif;
+}
+.grand-prix-month {
+  background-color: black;
+  color: white;
+}
+.divider-line {
+  height: 1px;
+  max-width: 100%;
+  margin: .5rem auto;
+  background-color: gray;
+}
+.grand-prix-country {
+  font-family: 'F1 Bold', sans-serif;
+  font-size: 1.1rem;
+}
+.grand-prix-name {
+  font-size: .9rem;
+  margin: .4rem 0;
+}
+.grand-prix-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grand-prix-img-wrapper > img {
+  max-height: 108px;
+}
+
+@media screen and (max-width: 576px) {
+  .grand-prix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 769px) {
+  .next-race-wrapper {
+    flex-direction: column;
+  }
+  .next-race-inner-container {
+    width: 100%;
+    margin: .5rem 0;
+  }
+}
+@media screen and (min-width: 576px) {
+  .schedule-container {
+    --max-width: 576px;
+  }
+  .grand-prix-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grand-prix {
+    padding: .5rem;
+  }
+}
+@media screen and (min-width: 968px) {
+  .schedule-container {
+    --max-width: 768px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .schedule-container {
+    --max-width: 968px;
+  }
+  .grand-prix-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1368px) {
+  .schedule-container {
+    --max-width: 1320px;
+  }
+  .grand-prix-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

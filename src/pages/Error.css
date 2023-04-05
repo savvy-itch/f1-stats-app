@@ -1,0 +1,13 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+.error-page h1,
+.error-page p,
+.error-page button {
+  margin: .5rem 0;
+}
