@@ -28,11 +28,12 @@ export default function Schedule() {
     .then(response => response.json())
     .then(currentSeason => {
       setCurrentSeason(currentSeason.MRData.RaceTable.Races);
-      // const newRaces = currentSeason.MRData.RaceTable.Races.map({Circuit} => 
-      //   ({Circuit.circuitId}));
-      // setRacesLinks(newRaces);
+      const newRaces = currentSeason.MRData.RaceTable.Races.map(obj => 
+        ({id: obj.Circuit.circuitId, raceName: obj.raceName}));
+      setRacesLinks(newRaces);
       // console.log(newRaces);
-      console.log(currentSeason.MRData.RaceTable.Races)})
+      // console.log(currentSeason.MRData.RaceTable.Races)
+    })
     .catch(err => console.error(err));
   }
 
@@ -48,7 +49,7 @@ export default function Schedule() {
       const response = await fetch(nextRaceUrl);
       const nextRace = await response.json();
       setNextRace(nextRace.MRData.RaceTable);
-      console.log(nextRace)
+      // console.log(nextRace)
     } catch (error) {
       console.log(error);
     }

@@ -95,11 +95,10 @@
 }
 .grand-prix {
   padding: 1rem;
-}
-.grand-prix {
   padding-top: 10px;
   border-color:#e10600;
-  transition:.1s all ease;
+  transition: .1s all ease;
+  position: relative;
 }
 .grand-prix-inner-container {
   padding: .5rem .5rem .5rem 0;
@@ -109,26 +108,45 @@
   padding-right: .5rem;
   color: var(--highlight-color);
   transition: .2s;
+  text-transform: uppercase;
 }
 .grand-prix fieldset {
-  border-right: 2px solid black;
-  border-top: 2px solid black;
-  border-left: none;
-  border-bottom: none;
+  border: none;
   border-top-right-radius: 20px;
   position: relative;
   transition: .2s;
   margin-top: 20px;
+}
+.grand-prix fieldset a {
+  text-decoration: none;
 }
 .grand-prix fieldset:hover {
   cursor: pointer;
   border-color: var(--highlight-color);
 }
 .grand-prix fieldset:hover .grand-prix-round {
-  margin-top: -20px;
-  margin-bottom: 20px;
+  transform: translateY(-20px);
+  position: relative;
+  z-index: 1; 
 }
-
+.grand-prix fieldset::before {
+  content: '';
+  position: absolute;
+  left: 80px;
+  right: -2px;
+  top: -8px;
+  bottom: 0;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-top-right-radius: 20px;
+  transition: .2s;
+  z-index: -1;
+}
+.grand-prix fieldset:hover::before {
+  transform: translateY(-20px);
+  bottom: -20px;
+  border-color: var(--highlight-color);
+}
 .grand-prix-date {
   font-family: 'F1 Wide', sans-serif;
 }
@@ -145,6 +163,8 @@
 .grand-prix-country {
   font-family: 'F1 Bold', sans-serif;
   font-size: 1.1rem;
+  display: flex;
+  align-items: end;
 }
 .grand-prix-name {
   font-size: .9rem;

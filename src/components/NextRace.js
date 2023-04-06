@@ -49,11 +49,14 @@ export default function NextRace({ nextRace }) {
             </div>
             <div className="divider-line"></div>
             <div className="next-race-time">
-            <div>
-                <p>sprint:</p>
-                <div className="stage-weekday">{getWeekday(race.Sprint.date)}</div>
-                <div className="stage-time">{race.Sprint.time.substring(0,5)}</div>
-              </div>
+              {/* if there's a sprint element in race qualifying */}
+              {race.Sprint.date && 
+                <div>
+                  <p>sprint:</p>
+                  <div className="stage-weekday">{getWeekday(race.Sprint.date)}</div>
+                  <div className="stage-time">{race.Sprint.time.substring(0,5)}</div>
+                </div>
+              }
               <div>
                 <p>race:</p>
                 <div className="stage-weekday">{getWeekday(race.date)}</div>
