@@ -1,6 +1,18 @@
 body {
   background-color: #f7f4f1;
 }
+.results-header {
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'F1 Bold', sans-serif;
+  text-transform: uppercase;
+}
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -13,56 +25,175 @@ h3 {
   font-weight: 500;
 }
 
+.container > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 2rem 0;
+}
 .results-container {
   border: 10px solid var(--highlight-color);
   border-left: none;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  background-color: white;
   padding: 2rem;
-  margin: 2rem 0;
+  width: 70%;
 }
 .results-table {
   font-family: Tahoma, sans-serif;
   border-collapse: collapse;
-  text-align: center;
   font-size: .9rem;
   transition: height 0.3s ease-out;
+  display: none;
+  margin: 2rem auto;
+  background-color: white;
 }
 .results-table th {
   padding: .4rem;
   text-transform: uppercase;
 }
-.results-table td {
-  padding: .4rem;
+.results-table > tbody tr:nth-child(odd) {
+  background-color: #f4f4f4;
 }
-
+.results-table td {
+  padding: .6rem 1rem;
+}
 .results-table.show {
   height: auto;
+  display: table;
 }
 .results-table.hide {
   height: 0;
   overflow: hidden;
 }
 
+/* -------------- Results Tabs --------------- */
+.single-stage-container {
+  background-color: white;
+  border-radius: 7px;
+  margin: 3px 0;
+}
+.results-tab {
+  display: grid;
+  grid-template-columns: .6fr 5fr .8fr;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+}
+.results-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-right: 2px dotted gray;
+}
+.results-date > div {
+  color: #67676d;
+  background-color: #ededed;
+  padding: .2rem .4rem;
+  margin-top: .2rem;
+  border-radius: 10px;
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+.stage-name {
+  padding-left: .7rem;
+  font-family: 'F1 Bold', sans-serif;
+  font-size: 1.2rem;
+}
+.results-btn {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: .9rem;
+  text-transform: uppercase;
+  background-color: white;
+  border: 1px solid #67676d;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.results-btn:hover {
+  cursor: pointer;
+  border: 2px solid var(--highlight-color);
+}
 
-@media screen and (min-width: 576px) {
+/* -------------- Circuit Image ---------- */
+.circuit-image-wrapper {
+  max-width: 25%;
+  border: 1px solid #67676d;
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.circuit-image-wrapper > p {
+  align-self: flex-start;
+  font-size: 1rem;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+.circuit-image-wrapper > img {
+  max-width: 100%;
+}
+.container .details-info {
+  margin: 2rem 0;
+  display: block;
+}
+.details-info > p {
+  margin: 1rem 0;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1368px) {
   .container {
-    --max-width: 576px;
+    max-width: 1200px;
+  }
+  .container > div {
+    flex-direction: column;
+  }
+  .results-container {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .circuit-image-wrapper {
+    max-width: 60%;
+  }
+  .circuit-image-wrapper > img {
+    max-width: 70%;
   }
 }
-@media screen and (min-width: 968px) {
+@media screen and (max-width: 1200px) {
   .container {
-    --max-width: 768px;
+    max-width: 1024px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .container {
-    --max-width: 968px;
+    max-width: 968px;
   }
 }
-@media screen and (min-width: 1368px) {
+@media screen and (max-width: 968px) {
   .container {
-    --max-width: 1320px;
+    max-width: 768px;
+  }
+  .results-tab {
+    grid-template-columns: .8fr 4fr 1fr;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 576px;
+  }
+  .circuit-image-wrapper {
+    max-width: 100%;
+  }
+  .results-tab {
+    grid-template-columns: .8fr 3fr 1fr;
+  }
+}
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: 95vw;
   }
 }
