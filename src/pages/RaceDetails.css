@@ -1,10 +1,14 @@
 body {
   background-color: #f7f4f1;
 }
+h3 {
+  text-transform: uppercase;
+}
 .results-header {
   height: 450px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-blend-mode: darken;
   color: white;
   font-size: 3rem;
   display: flex;
@@ -12,7 +16,61 @@ body {
   align-items: center;
   font-family: 'F1 Bold', sans-serif;
   text-transform: uppercase;
+  text-align: center;
+  position: relative;
 }
+.header-country {
+  font-size: 3.2rem;
+}
+.header-dates {
+  background-color: #15151e;
+  font-family: 'F1 Regular', Tahoma, sans-serif;
+  font-size: 1rem;
+  padding: 6px 10px;
+  border-radius: 25px;
+  width: fit-content;
+  margin: 0 auto;
+}
+/* make bg-image darker */
+.results-header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  mix-blend-mode: multiply;
+}
+
+.results-header-title {
+  filter: brightness(1);
+}
+/* ---------- Podium ------------- */
+.podium-winner {
+  display: grid;
+  grid-template-columns: .8fr 5fr 1fr;
+  gap: .5rem;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: white;
+  margin: 2px 0;
+}
+.podium-winner > strong {
+  text-align: center;
+}
+.podium-winner > p:last-child {
+  background-color: #ededed;
+  color: #15151e;
+  font-family: Tahoma, sans-serif;
+  font-size: .8rem;
+  letter-spacing: 1px;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -182,6 +240,9 @@ h3 {
   }
 }
 @media screen and (max-width: 768px) {
+  .results-header {
+    height: 370px;
+  }
   .container {
     max-width: 576px;
   }
@@ -193,6 +254,9 @@ h3 {
   }
 }
 @media screen and (max-width: 576px) {
+  .results-header {
+    height: 215px;
+  }
   .container {
     max-width: 95vw;
   }

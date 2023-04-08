@@ -7,9 +7,12 @@ export default function GrandPrix({grandPrix, index}) {
   let formattedMonth = new Date(date);
   const options = { month: 'short' };
   formattedMonth = formattedMonth.toLocaleDateString('en-US', options);
+  console.log(grandPrix);
 
   return (
-    <Link to={`/schedule/${grandPrix.Circuit.circuitId}`}>
+    <Link 
+      to={`/schedule/${grandPrix.Circuit.circuitId}/${grandPrix.round}`}
+    >
       <div className='grand-prix'>
         <fieldset>
           <legend className="grand-prix-round">Round {index + 1}</legend>

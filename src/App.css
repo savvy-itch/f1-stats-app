@@ -15,11 +15,20 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* font-family: 'F1 Regular', sans-serif; */
 }
 
 body {
   --highlight-color: #e10600;
+  --red_bull_color: #3671C6;
+  --ferrari_color: #F91536;
+  --mercedes_color: #6CD3BF;
+  --aston_martin_color: #358C75;
+  --mclaren_color: #F58020;
+  --alpine_color: #2293D1;
+  --haas_color: #B6BABD;
+  --alfa_romeo_color: #C92D4B;
+  --alpha_tauri_color: #5E8FAA;
+  --williams_color: #37BEDD;
 
   font-family: 'F1 Regular', sans-serif;
 }
