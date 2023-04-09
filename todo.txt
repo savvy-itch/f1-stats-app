@@ -1,0 +1,2 @@
+- add Loading
+- Schedule - on race hover the 'round' font weight changes in current race

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loading from '../components/Loading';
 import RaceResultsTable from '../components/RaceResultsTable';
 import QualificationResultsTable from '../components/QualificationResultsTable';
 import SprintResultsTable from '../components/SprintResultsTable';
+import Podium from '../components/Podium';
 import Timer from '../components/Timer';
 import './RaceDetails.css';
 
@@ -17,6 +19,7 @@ const resultsURL = 'https://ergast.com/api/f1/current/';
 
 export default function RaceDetails() {
   const {id, round} = useParams();
+  const [loading, setLoading] = useState(false);
   const [raceResults, setRaceResults] = useState({});
   const [qualificationResults, setQualificationResults] = useState({});
   const [sprintResults, setSprintResults] = useState({});
@@ -35,22 +38,26 @@ export default function RaceDetails() {
   }
 
   useEffect(() => {
+    setLoading(true);
     fetchResults(`${raceResultsURL}${id}/results.json`, setRaceResults);
-    // console.log(`${raceResultsURL}${id}/results.json`);
+    console.log(`${raceResultsURL}${id}/results.json`);
     fetchResults(`${qualifyingResultsURL}${id}/qualifying.json`, setQualificationResults);
     // console.log(`${qualifyingResultsURL}${id}/qualifying.json`);
     // fetchResults('https://ergast.com/api/f1/2021/10/sprint.json', setSprintResults);
     fetchResults(`${sprintResultsURL}${id}/sprint.json`, setSprintResults);
     // console.log(`${sprintResultsURL}${id}/sprint.json`);
     fetchResults(`${resultsURL}${round}.json`, setAllResults);
-    // console.log(`${resultsURL}${round}.json`)
+    console.log(`${resultsURL}${round}.json`)
+    setLoading(false);
   }, []);
 
   function getFormattedMonth(date) {
-    let formattedMonth = new Date(date);
-    const monthOptions = { month: 'short' };
-    formattedMonth = formattedMonth.toLocaleDateString('en-US', monthOptions);
+    let formattedMonth = new Date(date).toLocaleDateString('en-US', { month: 'short'});
     return formattedMonth;
+  }
+
+  if (loading) {
+    return <Loading />
   }
 
   return (
@@ -68,49 +75,36 @@ export default function RaceDetails() {
       </div>
       <section className="container">
         <div>
-          {raceResults.Races && raceResults.Races.length &&
-            <div className="podium-container">
-              <div className="podium-winner">
-                <strong style={{color: `var(--${raceResults.Races[0].Results[0].Constructor.constructorId}_color)`}}>1</strong>
-                <p>{raceResults.Races[0].Results[0].Driver.givenName} <strong>{raceResults.Races[0].Results[0].Driver.familyName}</strong></p>
-                <p>{raceResults.Races[0].Results[0].Time.time}</p>
-              </div>
-              <div className="podium-winner">
-                <strong style={{color: `var(--${raceResults.Races[0].Results[1].Constructor.constructorId}_color)`}}>2</strong>
-                <p>{raceResults.Races[0].Results[1].Driver.givenName} <strong>{raceResults.Races[0].Results[1].Driver.familyName}</strong></p>
-                <p>{raceResults.Races[0].Results[1].Time.time}</p>
-              </div>
-              <div className="podium-winner">
-                <strong style={{color: `var(--${raceResults.Races[0].Results[2].Constructor.constructorId}_color)`}}>3</strong>
-                <p>{raceResults.Races[0].Results[2].Driver.givenName} <strong>{raceResults.Races[0].Results[2].Driver.familyName}</strong></p>
-                <p>{raceResults.Races[0].Results[2].Time.time}</p>
-              </div>
-            </div>
+          {raceResults.Races && raceResults.Races.length > 0 &&
+            <Podium raceResults={raceResults} />
           }
-          {allResults.Races && allResults.Races.length > 0 &&
+          {allResults.Races && allResults.Races.length > 0 && raceResults.Races && raceResults.Races.length < 1 &&
             <Timer allResults={allResults} />
           }
         </div>
         <h1>RACE WEEKEND</h1>
-        {allResults.Races && allResults.Races.length > 0 &&
+        {allResults.Races && allResults.Races.length > 0 && 
           <h3>FORMULA 1 {allResults.Races[0].raceName} {allResults.Races[0].season}</h3>
         }
         <div>
           <div className="results-container">
             <RaceResultsTable 
               results={raceResults}
+              schedule={allResults}
               getFormattedMonth={getFormattedMonth}
             />
-            <QualificationResultsTable 
-              results={qualificationResults}
-              getFormattedMonth={getFormattedMonth} 
-            />
-            {sprintResults.Races && sprintResults.Races.length > 0 &&
+            {allResults.Races && allResults.Races[0].Sprint &&
               <SprintResultsTable 
                 results={sprintResults}
+                schedule={allResults}
                 getFormattedMonth={getFormattedMonth} 
               />
             }
+            <QualificationResultsTable 
+              results={qualificationResults}
+              schedule={allResults}
+              getFormattedMonth={getFormattedMonth} 
+            />
           </div>
           <div className="circuit-image-wrapper">
             <img src={`images/circuits/${raceResults.circuitId}.png`} alt={raceResults.circuitId} />

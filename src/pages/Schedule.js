@@ -37,13 +37,6 @@ export default function Schedule() {
     .catch(err => console.error(err));
   }
 
-  function fetchData2() {
-    return fetch(url2, url2Headers)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-  }
-
   async function fetchNextRace() {
     try {
       const response = await fetch(nextRaceUrl);
@@ -58,7 +51,6 @@ export default function Schedule() {
   useEffect(() => {
     fetchData1();
     fetchNextRace();
-    // fetchData2();
   }, []);
 
   return (

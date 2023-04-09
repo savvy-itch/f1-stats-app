@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 
-export default function QualificationResultsTable({ results, getFormattedMonth }) {
+export default function QualificationResultsTable({ results, schedule, getFormattedMonth }) {
   const [showResults, setShowResults] = useState(false);
 
   return (
     <div className="single-stage-container">
       <article className="results-tab">
-        {results.Races && results.Races.length > 0 && 
+        {schedule.Races && schedule.Races.length > 0 && 
           <div className="results-date">
-            {results.Races[0].date.substring(8,)}
-            <div>{getFormattedMonth(results.Races[0].date)}</div>  
+            {schedule.Races[0].Qualifying.date.substring(8,)}
+            <div>{getFormattedMonth(schedule.Races[0].Qualifying.date)}</div>  
           </div>
         }
         <div className="stage-name">

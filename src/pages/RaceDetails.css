@@ -125,6 +125,50 @@ h3 {
   overflow: hidden;
 }
 
+/* -------------- Timer ------------------ */
+.timer-div {
+  background-color: #006544;
+  color: white;
+  padding: .6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: 'F1 Bold', sans-serif;
+  font-size: 1rem;
+  width: 300px;
+}
+.time-units {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid rgba(255,255,255,.7);
+  padding-top: .3rem;
+}
+.unit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+}
+.unit:not(:first-child) {
+  border-left: 1px solid rgba(255,255,255,.7);
+}
+.unit > div {
+  font-size: 1.6rem;
+}
+.unit > span {
+  font-size: .8rem;
+  font-family: Tahoma, sans-serif;
+  color: rgba(255,255,255,.7);
+  font-weight: 700;
+}
+
 /* -------------- Results Tabs --------------- */
 .single-stage-container {
   background-color: white;

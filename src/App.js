@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Schedule from './pages/Schedule';
 import RaceDetails from "./pages/RaceDetails";
 import Drivers from './pages/Drivers';
+import DriverDetails from "./pages/DriverDetails";
 import Teams from './pages/Teams';
 import Error from './pages/Error';
 // import components
@@ -20,6 +21,7 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/schedule/:id/:round" element={<RaceDetails />} />
         <Route path="/drivers" element={<Drivers />} />
+        <Route path="/drivers/:id" element={<DriverDetails />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="*" element={<Error />} />
       </Routes>
