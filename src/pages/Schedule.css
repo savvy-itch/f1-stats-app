@@ -129,6 +129,7 @@
   position: relative;
   z-index: 1; 
 }
+/* border */
 .grand-prix fieldset::before {
   content: '';
   position: absolute;

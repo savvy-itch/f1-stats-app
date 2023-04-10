@@ -21,7 +21,7 @@ function App() {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/schedule/:id/:round" element={<RaceDetails />} />
         <Route path="/drivers" element={<Drivers />} />
-        <Route path="/drivers/:id" element={<DriverDetails />} />
+        <Route path="/drivers/:id/:name/:surname" element={<DriverDetails />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="*" element={<Error />} />
       </Routes>

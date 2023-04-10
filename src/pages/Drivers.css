@@ -1,19 +1,157 @@
+body {
+  background-color: white;
+}
 .drivers-container {
   max-width: 1400px;
   margin: 0 auto;
 }
-.podium-grid,
-.drivers-grid {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.drivers-heading {
+  padding: 1rem;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  border-top-right-radius: 30px;
 }
-.podium-grid {
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 2rem;
+h1 {
+  font-size: 2.5rem;
 }
-.drivers-grid {
-  grid-template-columns: repeat(4, 1fr);
+.drivers-desc {
+  background-color: #f9f9f9;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  border-radius: 8px;
   margin-top: 1rem;
+}
+.drivers-grid {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ---------- Driver Card -------------- */
+.driver-card {
+  padding: .6rem;
+}
+.drivers-grid > a:nth-of-type(-n+3) {
+  flex: 0 0 33.3%;
+}
+.drivers-grid > a:nth-of-type(n+4) {
+  flex: 0 0 25%;
+}
+.driver-position {
+  display: flex;
+  justify-content: space-between;
+}
+.driver-position > div:first-child {
+  font-family: 'F1 Bold', sans-serif;
+  font-size: 2.5rem;
+}
+.driver-pos-pts {
+  font-family: 'F1 Wide';
+  text-align: end;
+  font-size: 1.2rem;
+}
+.driver-pos-pts > div {
+  background-color: black;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: .8rem;
+}
+.driver-name > div {
+  border-left: 6px solid currentColor;
+  padding-left: .6rem;
+}
+.driver-name p {
+  font-size: 1rem;
+  color: black;
+}
+.driver-name strong {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: black;
+}
+.driver-card fieldset {
+  border: none;
+  border-top-right-radius: 20px;
+  position: relative;
+  transition: .2s;
+  margin-top: 13px;
+  padding: .5rem .5rem .5rem 0;
+}
+/* border */
+.driver-card fieldset:hover {
+  color: black;
+  border-color: currentColor;
+}
+.driver-card fieldset::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: -2px;
+  top: -8px;
+  bottom: 0;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-color: black;
+  border-top-right-radius: 13px;
+  transition: .2s;
+  z-index: -1;
+}
+.driver-card fieldset:hover::before {
+  transform: translateY(-13px);
+  bottom: -13px;
+  border-color: currentColor;
+}
+.text {
+  color: black
+}
+
+.driver-add-div > p {
+  color: #67676d;
+  font-size: .9rem;
+}
+.driver-image-div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  max-width: 100%;
+}
+.driver-add-div > div {
+  font-size: 2.5rem;
+}
+.driver-image-div > img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1368px) {
+  .drivers-container {
+    max-width: 968px;
+  }
+  .drivers-grid > a:nth-of-type(n+4) {
+    flex: 0 0 33.3%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .drivers-container {
+    max-width: 768px;
+  }
+  .drivers-grid > a:nth-of-type(n+4),
+  .drivers-grid > a:nth-of-type(-n+3) {
+    flex: 0 0 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .drivers-container {
+    max-width: 568px;
+  }
+  .drivers-grid > a:nth-of-type(n+4),
+  .drivers-grid > a:nth-of-type(-n+3) {
+    flex: 0 0 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .drivers-container {
+    max-width: 100%;
+  }
 }
