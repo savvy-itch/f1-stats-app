@@ -153,5 +153,6 @@ h1 {
 @media screen and (max-width: 768px) {
   .drivers-container {
     max-width: 100%;
+    padding: 0 .8rem;
   }
 }
