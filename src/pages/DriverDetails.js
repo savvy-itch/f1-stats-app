@@ -47,8 +47,8 @@ export default function DriverDetails() {
           </div>
           <div>
             {/* <p className="driver-number">1</p> */}
-            <p>{driverInfo.response[0].number}</p>
-            <p>{driverInfo.response[0].name}</p>
+            <p className="driver-number">{driverInfo.response[0].number}</p>
+            <p className="driver-name">{driverInfo.response[0].name}</p>
             {/* <p className="driver-name">Max Verstappen</p> */}
           </div>
         </div>

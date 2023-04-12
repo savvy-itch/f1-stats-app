@@ -19,3 +19,7 @@
 - Navbar
 - top 3 grid
 - drivers grid
+
+## Teams
+- Navbar
+- teams grid
