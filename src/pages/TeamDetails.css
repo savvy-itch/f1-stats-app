@@ -14,24 +14,34 @@ body {
 }
 .team-info {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   max-width: 48%;
   padding: 1rem 2rem 0 0;
 }
+.team-info-logo {
+  max-width: 50%;
+}
+.team-info-logo > img {
+  max-width: 100%;
+}
 .team-info > div {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+.team-info-stats {
+  display: flex;
   justify-content: space-between;
 }
 .team-info p {
   margin: .5rem 0;
   font-size: 1rem;
 }
-.team-info > div:first-of-type {
+.team-info-stats > div:first-of-type {
   font-weight: 700;
   margin-right: 2rem;
 }
-.team-info > div:last-of-type {
+.team-info-stats > div:last-of-type {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 .team-drivers-links-div {
@@ -117,5 +127,12 @@ body {
   }
   .single-driver-div {
     max-width: 100%;
+  }
+  .team-info-logo {
+    max-width: 100%;
+    align-items: center;
+  }
+  .team-info-logo > img {
+    max-width: 70%;
   }
 }

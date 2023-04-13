@@ -22,7 +22,7 @@ export default function TeamDetails() {
       const response = await fetch(url, headers);
       const teamInfo = await response.json();
       setTeamInfo(teamInfo.response[0]);
-      // console.log(teamInfo.response[0]);
+      console.log(teamInfo.response[0]);
     } catch (error) {
       console.log(error);
     }
@@ -51,34 +51,39 @@ export default function TeamDetails() {
       }
       <section className="team-info-container">
         <div className="team-info">
-          <div>
-            <p>Team</p>
-            <p>Base</p>
-            <p>Team Chief</p>
-            <p>Technical Chief</p>
-            <p>Chassis</p>
-            <p>Power Unit</p>
-            <p>First Team Entry</p>
-            <p>World Championships</p>
-            <p>Highest Race Finish</p>
-            <p>Pole Positions</p>
-            <p>Fastest Laps</p>
+          <div className="team-info-logo">
+            <img src="/images/teams/red_bull_logo_lg.jpg" alt="" />
           </div>
-          {teamInfo && Object.keys(teamInfo).length > 0 &&
-          <div>
-            <p>{teamInfo.name}</p>
-            <p>{teamInfo.base}</p>
-            <p>{teamInfo.director}</p>
-            <p>{teamInfo.technical_manager}</p>
-            <p>{teamInfo.chassis}</p>
-            <p>{teamInfo.engine}</p>
-            <p>{teamInfo.first_team_entry}</p>
-            <p>{teamInfo.world_championships}</p>
-            <p>{teamInfo.highest_race_finish.position}(x{teamInfo.highest_race_finish.number})</p>
-            <p>{teamInfo.pole_positions}</p>
-            <p>{teamInfo.fastest_laps}</p>
+          <div className="team-info-stats">
+            <div>
+              <p>Team</p>
+              <p>Base</p>
+              <p>Team Chief</p>
+              <p>Technical Chief</p>
+              <p>Chassis</p>
+              <p>Power Unit</p>
+              <p>First Team Entry</p>
+              <p>World Championships</p>
+              <p>Highest Race Finish</p>
+              <p>Pole Positions</p>
+              <p>Fastest Laps</p>
+            </div>
+            {teamInfo && Object.keys(teamInfo).length > 0 &&
+            <div>
+              <p>{teamInfo.name}</p>
+              <p>{teamInfo.base}</p>
+              <p>{teamInfo.director}</p>
+              <p>{teamInfo.technical_manager}</p>
+              <p>{teamInfo.chassis}</p>
+              <p>{teamInfo.engine}</p>
+              <p>{teamInfo.first_team_entry}</p>
+              <p>{teamInfo.world_championships}</p>
+              <p>{teamInfo.highest_race_finish.position}(x{teamInfo.highest_race_finish.number})</p>
+              <p>{teamInfo.pole_positions}</p>
+              <p>{teamInfo.fastest_laps}</p>
+            </div>
+            }
           </div>
-          }
         </div>
         {teamDrivers && teamDrivers.length > 0 &&
         <div className="team-drivers-links-div">

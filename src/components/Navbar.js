@@ -9,6 +9,7 @@ export default function Navbar() {
         <li><Link to="/schedule">Schedule</Link></li>
         <li><Link to="/drivers">Drivers</Link></li>
         <li><Link to="/teams">Teams</Link></li>
+        <li><Link to="/archive">Archive</Link></li>
       </ul>
     </nav>
   );
