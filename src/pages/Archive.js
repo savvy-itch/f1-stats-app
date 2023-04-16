@@ -1,89 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import ArchiveResultsTable from '../components/ArchiveResultsTable';
+import './Archive.css';
 
 const BASE_URL = 'https://ergast.com/api/f1';
-// Race results (gp, date, winner, team, laps, time)
-// http://ergast.com/api/f1/2009/results/1.json
-// Selected race results (pos, no, driver, team, laps, time, pts)
-// http://ergast.com/api/f1/2007/circuits/albert_park/results.json
-// Drivers standings (pos, driver, nationality, team, pts)
-// http://ergast.com/api/f1/2007/driverStandings.json
-// Selected driver results (gp, date, team, pos, pts)
-// http://ergast.com/api/f1/2007/drivers/alonso/results.json
-// Teams standings (pos, team, pts)
-// http://ergast.com/api/f1/2007/constructorStandings.json
-// Selected team standings (pos, date, pts)
-// Fastest Lap (gp, driver, team, time)
-// http://ergast.com/api/f1/2004/fastest/1/results.json
-
-
-// dynamic category
-// races: https://ergast.com/api/f1/2012.json
-// drivers: https://ergast.com/api/f1/2010/drivers.json
-// teams: http://ergast.com/api/f1/2010/constructors.json
 
 export default function Archive() {
   const [year, setYear] = useState('2004');
   const [category, setCategory] = useState('races');
-  const [dynamicCategory, setDynamicCategory] = useState([]);
+  const [dynamicCategoriesList, setDynamicCategoriesList] = useState([]);
+  const [dynamicCategory, setDynamicCategory] = useState('all');
   const [results, setResults] = useState([]);
 
+  // CATEGORIES
   function handleYearChange(e) {
     const selectedYear = e.target.value;
-    // console.log(selectedYear);
     setYear(selectedYear);
-    // checkDynamicCategories();
   }
 
   function handleCategoryChange(e) {
     const selectedCategory = e.target.value;
-    // console.log(selectedCategory);
     setCategory(selectedCategory);
-    // checkDynamicCategories();
   }
 
-  async function fetchResults(url) {
-    try {
-      const response = await fetch(url);
-      let results = await response.json();
-      // console.log(results.MRData.RaceTable.Races);
-      setResults(results.MRData.RaceTable.Races);
-    } catch (error) {
-      console.log(error);
-    }
+  function handleDynamicCategoryChange(e) {
+    const selectedCategory = e.target.value;
+    setDynamicCategory(selectedCategory);
   }
 
   function checkDynamicCategories() {
     if (category !== 'fastest') {
       switch (category) {
         case 'races':
-          fetchDynamicCategory(`${BASE_URL}/${year}.json`);
+          fetchDynamicCategories(`${BASE_URL}/${year}.json`);
           break;
         case 'drivers':
-          fetchDynamicCategory(`${BASE_URL}/${year}/drivers.json`);
+          fetchDynamicCategories(`${BASE_URL}/${year}/drivers.json`);
           break;
         case 'teams':
-          fetchDynamicCategory(`${BASE_URL}/${year}/constructors.json`);
+          fetchDynamicCategories(`${BASE_URL}/${year}/constructors.json`);
           break
         default:
           break;
       }
     } else {
-      setDynamicCategory([]);
+      setDynamicCategoriesList([]);
     }
   }
 
-  function handleDynamicCategoryChange() {
-    setDynamicCategory(null);
-  }
-
-  async function fetchDynamicCategory(url) {
+  async function fetchDynamicCategories(url) {
     try {
       const response = await fetch(url);
       let category = await response.json();
       category = category.MRData;
-      setDynamicCategory(category);
-      console.log(category);
+      setDynamicCategoriesList(category);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // RESULTS
+  async function fetchResults(url, dynamicCategory) {
+    try {
+      const response = await fetch(url);
+      let results = await response.json();
+      setResults(results.MRData);
     } catch (error) {
       console.log(error);
     }
@@ -93,26 +73,37 @@ export default function Archive() {
     checkDynamicCategories();
     switch (category) {
       case "races":
-        fetchResults(`${BASE_URL}/${year}/results/1.json`);
+        fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
+          ? 'results/1.json'
+          : `circuits/${dynamicCategory}/results.json`}`, dynamicCategory);
         break;
       case "fastest":
-        fetchResults(`${BASE_URL}/${year}/fastest/1/results.json`);
+        fetchResults(`${BASE_URL}/${year}/fastest/1/results.json`, dynamicCategory);
         break;
-      // case "drivers":
-      //   fetchResults(`${BASE_URL}/${year}/driverStandings.json`);
-      //   break;
-      // case "teams":
-      //   fetchResults(`${BASE_URL}/${year}/constructorStandings.json`);
-      //   break;
+      case "drivers":
+        fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
+          ? 'driverStandings.json'
+          : `drivers/${dynamicCategory}/results.json`}`, dynamicCategory);
+        break;
+      case "teams":
+        fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
+          ? 'constructorStandings.json'
+          : `constructors/${dynamicCategory}/results.json`}`, dynamicCategory);
+        break;
       default:
         break;
     } 
-  }, [year, category])
+  }, [year, category, dynamicCategory])
+
+  useEffect(() => {
+    setDynamicCategory("all");
+  }, [year, category]);
+
 
   return (
-    <div className="archive-container">
-      <div>
-        <div>
+    <div>
+      <div className="archive-container">
+        <section className="search-field">
           <select name="" id="" value={year} onChange={handleYearChange}>
             <option value="2004">2004</option>
             <option value="2005">2005</option>
@@ -135,23 +126,19 @@ export default function Archive() {
             <option value="2022">2022</option>
             <option value="2023">2023</option>
           </select>
-        </div>
-        <div>
           <select name="" id="" value={category} onChange={handleCategoryChange}>
             <option value="races">Races</option>
             <option value="drivers">Drivers</option>
             <option value="teams">Teams</option>
             <option value="fastest">Fastest Laps</option>
           </select>
-        </div>
-        <div>
           {/* no dynamic categories for fastest laps */}
-          <select name="" id="" onChange={handleDynamicCategoryChange}>
+          <select name="" id="" value={dynamicCategory} onChange={handleDynamicCategoryChange}>
           {category === 'fastest' 
             ? null 
             : <option value="all">All</option>
           }
-          {dynamicCategory.RaceTable && dynamicCategory.RaceTable.Races.map(dc => {
+          {dynamicCategoriesList.RaceTable && dynamicCategoriesList.RaceTable.Races.map(dc => {
             return <option 
               key={dc.Circuit.circuitId} 
               value={dc.Circuit.circuitId}>
@@ -159,7 +146,7 @@ export default function Archive() {
               </option>
           })
           }
-          {dynamicCategory.DriverTable && dynamicCategory.DriverTable.Drivers.map(dc => {
+          {dynamicCategoriesList.DriverTable && dynamicCategoriesList.DriverTable.Drivers.map(dc => {
             return <option 
               key={dc.driverId} 
               value={dc.driverId}>
@@ -167,7 +154,7 @@ export default function Archive() {
               </option>
           })
           }
-          {dynamicCategory.ConstructorTable && dynamicCategory.ConstructorTable.Constructors.map(dc => {
+          {dynamicCategoriesList.ConstructorTable && dynamicCategoriesList.ConstructorTable.Constructors.map(dc => {
             return <option 
               key={dc.constructorId} 
               value={dc.constructorId}>
@@ -176,9 +163,17 @@ export default function Archive() {
           })
           }
           </select>
-        </div>
+        </section>
       </div>
-      {/* <ArchiveResultsTable results={results} /> */}
+      {Object.keys(results).length > 0 &&
+        <ArchiveResultsTable 
+          year={year}
+          category={category}
+          dynamicCategory={dynamicCategory}
+          setDynamicCategory={setDynamicCategory}
+          results={results}
+        />
+      }
     </div>
   )
 }

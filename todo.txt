@@ -1,3 +1,4 @@
 - add Loading
 - Schedule - on race hover the 'round' font weight changes in current race
 - add similar news to You Might Also Like
+- модифицировать класс results-table, чтобы по умолчанию он отображал, а не скрывал контент

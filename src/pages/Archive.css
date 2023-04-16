@@ -1,0 +1,89 @@
+body {
+  background-color: #f9f9f9;
+}
+.archive-container {
+  background-color: white;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-bottom: 2px solid #f9f9f9;
+  padding: 2rem;
+}
+.search-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-field select {
+  flex: 33%;
+  background-color: white;
+  line-height: 1.2rem;
+  font-size: 1rem;
+  padding: .5rem;
+  font-family: 'F1 Regular', sans-serif;
+  border: 0;
+}
+.search-field select:nth-child(2n) {
+  border-left: 1.8px solid #e2e2e2;
+  border-right: 1.8px solid #e2e2e2;
+}
+
+.archive-container > h2 {
+  font-weight: normal;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.archive-table {
+  font-family: Tahoma, sans-serif;
+  border-collapse: collapse;
+  font-size: .9rem;
+  transition: height 0.3s ease-out;
+  margin: 2rem auto;
+  background-color: white;
+  width: 100%;
+  max-width: 100%;
+}
+.archive-table th {
+  padding: .6rem 1rem;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: .8rem;
+}
+.archive-table > tbody tr:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+.archive-table td {
+  padding: .6rem 1rem;
+  color: #4a4a4a;
+}
+
+@media screen and (max-width: 1360px) {
+  .archive-container {
+    max-width: 968px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .archive-container {
+    max-width: 768px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .archive-container {
+    max-width: 568px;
+  }
+  .search-field {
+    flex-direction: column;
+  }
+  .search-field select {
+    width: 100%;
+  }
+  .search-field select:nth-child(2n) {
+    border: 0;
+  }
+}
+@media screen and (max-width: 568px) {
+  .archive-container {
+    max-width: 100%;
+    padding: 0 .8rem;
+  }
+}
