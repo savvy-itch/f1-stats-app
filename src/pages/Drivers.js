@@ -12,7 +12,7 @@ export default function Drivers() {
       const response = await fetch(url);
       const drivers = await response.json();
       setDrivers(drivers.MRData.StandingsTable.StandingsLists[0]);
-      console.log(drivers.MRData.StandingsTable.StandingsLists[0]);
+      // console.log(drivers.MRData.StandingsTable.StandingsLists[0]);
     } catch (error) {
       console.log(error);
     }

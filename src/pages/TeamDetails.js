@@ -39,10 +39,11 @@ export default function TeamDetails() {
     }
   }
 
+  // id added as a dependency for navbar links to work
   useEffect(() => {
     fetchTeamInfo(`${TEAM_INFO_URL}=${name}`);
     fetchTeamDrivers(`${TEAM_DRIVERS_URL}${id}/drivers.json`);
-  }, []);
+  }, [id]);
 
   return (
     <div className="team-container">
@@ -88,7 +89,8 @@ export default function TeamDetails() {
         {teamDrivers && teamDrivers.length > 0 &&
         <div className="team-drivers-links-div">
           <div className="single-driver-div">
-          <Link to={`/drivers/${teamDrivers[0].driverId}/${teamDrivers[0].givenName}/${teamDrivers[0].familyName}`}>
+          {/* <Link to={`/drivers/${teamDrivers[0].driverId}/${teamDrivers[0].givenName}/${teamDrivers[0].familyName}`}> */}
+          <Link to={`/drivers/${teamDrivers[0].driverId}`}>
             <div className="single-driver-avatar-wrapper">
               <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt="" />
             </div>
@@ -102,7 +104,8 @@ export default function TeamDetails() {
           </Link>
           </div>
           <div className="single-driver-div">
-          <Link to={`/drivers/${teamDrivers[1].driverId}/${teamDrivers[1].givenName}/${teamDrivers[1].familyName}`}>
+          {/* <Link to={`/drivers/${teamDrivers[1].driverId}/${teamDrivers[1].givenName}/${teamDrivers[1].familyName}`}> */}
+          <Link to={`/drivers/${teamDrivers[1].driverId}`}>
             <div className="single-driver-avatar-wrapper">
               <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt="" />
             </div>

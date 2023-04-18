@@ -1,5 +1,7 @@
 .schedule-container {
   --max-width: 1400px;
+  margin-top: var(--navbar-height);
+  padding: 3rem 0;
 }
 .heading-container {
   padding: 1rem;

@@ -1,8 +1,8 @@
 body {
   --navbar-height: 70px;
 }
-.navbar {
-  height: auto;
+.navbar,
+.navbar-sm {
   width: 100%;
   background-color: var(--highlight-color);
   padding: 0 1rem;
@@ -10,6 +10,19 @@ body {
   height: var(--navbar-height);
   top: 0;
   display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  z-index: 100;
+}
+.navbar-sm {
+  display: none;
+  width: 100%;
+  background-color: var(--highlight-color);
+  padding: 0 1rem;
+  position: fixed;
+  min-height: var(--navbar-height);
+  height: auto;
+  top: 0;
   justify-content: space-between;
   align-items: stretch;
   z-index: 100;
@@ -57,28 +70,49 @@ body {
 /* ======= Navbar Overlay ======== */
 .navbar-sublinks {
   background-color: #15151e;
-  height: 200px;
+  /* background-color: rgba(21, 21, 30, .7); */
   width: 100%;
   position: fixed;
   top: var(--navbar-height);
   z-index: 100;
-  padding: 2rem;
-  display: grid;
+  padding: 2rem 5rem;
+  display: none;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
+  transition: .3s;
+  border-bottom: 1px solid var(--highlight-color);
+}
+.show-sublinks {
+  display: grid;
 }
 .sublink {
   color: white;
   font-size: .9rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
   height: fit-content;
   padding: 0 .7rem .7rem 0;
 }
+.navbar-sublinks > a:first-of-type {
+  grid-column: 1/5;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+.driver-sublink:first-of-type svg {
+  color: var(--highlight-color)
+}
+.sublink svg {
+  color: white;
+}
+
 .sublink > p {
   padding-left: .5rem;
+}
+.sublink span {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 /* BORDER */
 .sublink::before {
@@ -98,6 +132,82 @@ body {
 .sublink:hover::before {
   border-color: currentColor;
 }
+
 .text-white {
   color: white;
+}
+.team-sublink {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 .7rem 0 0;
+}
+.sublink-img-wrapper {
+  max-width: 100%;
+  position: relative;
+}
+.sublink-img-wrapper > img {
+  max-width: 80%;
+  position: inherit;
+  z-index: 2;
+}
+.sublink-img-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 38%;
+  height: 20px;
+  width: 30px;
+  background-color: currentColor;
+  z-index: 1;
+}
+.team-sublink-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.all-team-sublinks {
+  grid-column: 1/5;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+.all-teams-sublinks svg {
+  color: var(--highlight-color);
+}
+
+/* ======== Small Screen Dropdown Menu =========== */
+.nav-sm-header {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  height: var(--navbar-height);
+}
+.dropdown-menu {
+  background-color: var(--highlight-color);
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  transition: height .4s;
+}
+.navbar-sm > .show-dropdown-menu {
+  height: auto;
+  transition: height .4s;
+}
+.navbar-sm > .hide-dropdown-menu {
+  height: 0;
+  transition: height .4s;
+}
+.dropdown-menu-list {
+  list-style: none;
+}
+.dropdown-menu-list a {
+  color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    display: none;
+  }
+  .navbar-sm {
+    display: block;
+  }
 }

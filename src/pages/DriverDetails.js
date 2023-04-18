@@ -13,14 +13,25 @@ const headers = {
 		"x-apisports-key": "51482715129beb99b4d1186651ad73a8"
   }
 }
+
+// const driverURL = 'https://api-formula-1.p.rapidapi.com/drivers?search';
+// const headers = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': 'e59e85ff0amsh10ee2743f1eae42p12d5fajsnf8760430a72b',
+// 		'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
+// 	}
+// };
+
 // https://v1.formula-1.api-sports.io/drivers?search=alonso
 // 51482715129beb99b4d1186651ad73a8
 // https://v1.formula-1.api-sports.io/drivers
 
 
 export default function DriverDetails() {
-  const { id, name, surname } = useParams();
-  console.log(id);
+  // const { id, name, surname } = useParams();
+  const { id } = useParams();
+  // console.log(id);
   const [driverInfo, setDriverInfo] = useState({});
 
   let modifiedId = id;
@@ -28,7 +39,7 @@ export default function DriverDetails() {
   if (/[_]/.test(id)) {
     modifiedId = id.split('_').join(' ');
   }
-  // console.log(modifiedId);
+  console.log(modifiedId);
 
   async function fetchDriverInfo(url) {
     try {
@@ -41,9 +52,10 @@ export default function DriverDetails() {
     }
   }
 
+  // id added as a dependency for navbar links to work
   useEffect(() => {
     fetchDriverInfo(driverURL);
-  }, []);
+  }, [id]);
 
   return (
     <section className="drivers-container">

@@ -2,6 +2,7 @@ body {
   background-color: #f9f9f9;
 }
 .driver-info-container {
+  padding-top: var(--navbar-height);
   display: flex;
   background-color: white;
   justify-content: space-between;
