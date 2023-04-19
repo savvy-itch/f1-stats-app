@@ -9,6 +9,7 @@ export default function Navbar() {
   const [mainSublink, setMainSublink] = useState('');
   const [showSublinks, setShowSublinks] = useState(false);
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+  const [linksDelay, setLinksDelay] = useState(0);
   const menuRef = useRef(null);
   
   function displaySublinks(e) {
@@ -62,7 +63,29 @@ export default function Navbar() {
     setShowSublinks(false);
   }
 
+  // smooth animation of links appearance
+  function delayAnimation() {
+    // when displaying dropdown menu
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu-list li');
+    if (!showDropdownMenu) {
+      dropdownLinks.forEach((li, index) => {
+        setTimeout(() => {
+          li.style.opacity = 1;
+        }, linksDelay + index * 180)
+      });
+      setLinksDelay(linksDelay + [...dropdownLinks].length * 180);
+    } 
+    // when hiding dropdown menu
+    else {
+      dropdownLinks.forEach(li => {
+        li.style.opacity = 0;
+      });
+      setLinksDelay(0);
+    }
+  }
+
   useEffect(() => {
+    // set dynamic height of the links list
     if (menuRef.current) {
       if (showDropdownMenu) {
         menuRef.current.style.height = `${menuRef.current.scrollHeight}px`;
@@ -102,7 +125,8 @@ export default function Navbar() {
       {/* mobile dropdown menu */}
       <nav className="navbar-sm">
         <div className="nav-sm-header">
-          <button className="toggle-btn" onClick={() => setShowDropdownMenu(!showDropdownMenu)}>
+          <button className={`toggle-btn ${showDropdownMenu ? 'toggle-btn--rotate' : ''}`} onClick={() => {setShowDropdownMenu(!showDropdownMenu);
+          delayAnimation()}}>
             <FaBars />
           </button>
           <Link to="/">
@@ -116,7 +140,8 @@ export default function Navbar() {
             <li data-link="schedule">
               <Link to="/schedule">Schedule
                 <FaChevronRight />
-              </Link></li>
+              </Link>
+            </li>
             <li data-link="drivers">
               <Link to="/drivers">Drivers
                 <FaChevronRight />
@@ -130,7 +155,8 @@ export default function Navbar() {
             <li data-link="archive">
               <Link to="/archive">Archive
                 <FaChevronRight />
-              </Link></li>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

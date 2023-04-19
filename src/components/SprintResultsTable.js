@@ -20,7 +20,7 @@ export default function SprintResultsTable({ results, schedule, getFormattedMont
         <button className="results-btn" 
           onClick={() => setShowResults(!showResults)}>
           Results
-          <FaChevronDown style={{color: '#e10600', marginLeft: '10px'}} />
+          <FaChevronDown className={`chevron-icon ${showResults ? 'chevron-icon--rotate' : ''}`} />
         </button>
         }
       </article>
@@ -29,9 +29,9 @@ export default function SprintResultsTable({ results, schedule, getFormattedMont
           <thead>
             <tr>
               <th>pos</th>
-              <th>no</th>
+              <th className="collapse-column">no</th>
               <th>driver</th>
-              <th>team</th>
+              <th className="collapse-column">team</th>
               <th>laps</th>
               <th>time</th>
               <th>pts</th>
@@ -41,9 +41,9 @@ export default function SprintResultsTable({ results, schedule, getFormattedMont
             {results.Races[0].SprintResults.map(sr => {
               return <tr key={sr.Driver.driverId}>
                 <td>{sr.position}</td>
-                <td>{sr.number}</td>
+                <td className="collapse-column">{sr.number}</td>
                 <td>{sr.Driver.givenName} {sr.Driver.familyName}</td>
-                <td>{sr.Constructor.name}</td>
+                <td className="collapse-column">{sr.Constructor.name}</td>
                 <td>{sr.laps}</td>
                 <td>{sr.Time ? sr.Time.time : 'DNF'}</td>
                 <td>{sr.points}</td>

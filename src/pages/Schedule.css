@@ -1,5 +1,4 @@
 .schedule-container {
-  --max-width: 1400px;
   margin-top: var(--navbar-height);
   padding: 3rem 0;
 }
@@ -8,8 +7,6 @@
   border-top: 5px solid black;
   border-right: 5px solid black;
   border-top-right-radius: 30px;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 .schedule-heading {
   font-family: 'F1 Bold';
@@ -18,15 +15,13 @@
 
 /* ------------------- Next Race -------------- */
 .next-race {
-  background-color: #15151e;
-  border-color:#e10600;
+  background-color: var(--main-dark-color);
+  border-color: var(--highlight-color);
   padding: 1rem 0;
   margin: 1rem 0;
   text-transform: uppercase;
 }
 .next-race > fieldset {
-  max-width: var(--max-width);
-  margin: 0 auto;
   color: white;
   border-right: 10px solid var(--highlight-color);
   border-top: 10px solid var(--highlight-color);
@@ -61,7 +56,6 @@
 }
 .next-race-country {
   font-family: 'F1 Bold', sans-serif;
-  text-transform: lowercase;
   text-transform: capitalize;
   font-size: 1.6rem;
 }
@@ -92,13 +86,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: .7rem;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 .grand-prix {
   padding: 1rem;
   padding-top: 10px;
-  border-color:#e10600;
+  border-color: var(--highlight-color);
   transition: .1s all ease;
   position: relative;
 }
@@ -109,7 +101,6 @@
   font-family: Tahoma, sans-serif;
   padding-right: .5rem;
   color: var(--highlight-color);
-  transition: .2s;
   text-transform: uppercase;
 }
 .grand-prix fieldset {
@@ -197,9 +188,6 @@
   }
 }
 @media screen and (min-width: 576px) {
-  .schedule-container {
-    --max-width: 576px;
-  }
   .grand-prix-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -207,23 +195,12 @@
     padding: .5rem;
   }
 }
-@media screen and (min-width: 968px) {
-  .schedule-container {
-    --max-width: 768px;
-  }
-}
 @media screen and (min-width: 1024px) {
-  .schedule-container {
-    --max-width: 968px;
-  }
   .grand-prix-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media screen and (min-width: 1368px) {
-  .schedule-container {
-    --max-width: 1320px;
-  }
   .grand-prix-grid {
     grid-template-columns: repeat(4, 1fr);
   }

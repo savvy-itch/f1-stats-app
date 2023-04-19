@@ -12,7 +12,6 @@ export default function Drivers() {
       const response = await fetch(url);
       const drivers = await response.json();
       setDrivers(drivers.MRData.StandingsTable.StandingsLists[0]);
-      // console.log(drivers.MRData.StandingsTable.StandingsLists[0]);
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +22,7 @@ export default function Drivers() {
   }, []);
 
   return (
-    <div className="drivers-container">
+    <div className="drivers-container container-lg">
       <div className="drivers-heading">
         <h1>F1 Drivers {drivers.season}</h1>
       </div>

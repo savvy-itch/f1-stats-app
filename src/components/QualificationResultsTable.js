@@ -19,8 +19,8 @@ export default function QualificationResultsTable({ results, schedule, getFormat
         {results.Races && results.Races.length > 0 &&
         <button className="results-btn" 
           onClick={() => setShowResults(!showResults)}>
-          Results
-          <FaChevronDown style={{color: '#e10600', marginLeft: '10px'}} />
+          <p>Results</p>
+          <FaChevronDown className={`chevron-icon ${showResults ? 'chevron-icon--rotate' : ''}`} />
         </button>
         }
       </article>
@@ -29,9 +29,9 @@ export default function QualificationResultsTable({ results, schedule, getFormat
           <thead>
             <tr>
               <th>pos</th>
-              <th>no</th>
+              <th className="collapse-column">no</th>
               <th>driver</th>
-              <th>team</th>
+              <th className="collapse-column">team</th>
               <th>q1</th>
               <th>q2</th>
               <th>q3</th>
@@ -41,9 +41,9 @@ export default function QualificationResultsTable({ results, schedule, getFormat
             {results.Races[0].QualifyingResults.map(qr => {
               return <tr key={qr.Driver.driverId}>
                 <td>{qr.position}</td>
-                <td>{qr.number}</td>
+                <td className="collapse-column">{qr.number}</td>
                 <td>{qr.Driver.givenName} {qr.Driver.familyName}</td>
-                <td>{qr.Constructor.name}</td>
+                <td className="collapse-column">{qr.Constructor.name}</td>
                 <td>{qr.Q1}</td>
                 <td>{qr.Q2}</td>
                 <td>{qr.Q3}</td>

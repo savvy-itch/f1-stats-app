@@ -11,11 +11,7 @@ import './RaceDetails.css';
 const raceResultsURL = 'https://ergast.com/api/f1/current/circuits/';
 const qualifyingResultsURL = 'https://ergast.com/api/f1/current/circuits/';
 const sprintResultsURL = 'http://ergast.com/api/f1/current/circuits/';
-
 const resultsURL = 'https://ergast.com/api/f1/current/';
-
-// test url for sprint = 'https://ergast.com/api/f1/2021/10/sprint.json'
-// https://ergast.com/api/f1/current/5.json
 
 export default function RaceDetails() {
   const {id, round} = useParams();
@@ -31,7 +27,6 @@ export default function RaceDetails() {
       let results = await response.json();
       results = results.MRData.RaceTable;
       setFunction(results);
-      console.log(results);
     } catch (error) {
       console.log(error);
     }
@@ -40,14 +35,9 @@ export default function RaceDetails() {
   useEffect(() => {
     setLoading(true);
     fetchResults(`${raceResultsURL}${id}/results.json`, setRaceResults);
-    console.log(`${raceResultsURL}${id}/results.json`);
     fetchResults(`${qualifyingResultsURL}${id}/qualifying.json`, setQualificationResults);
-    // console.log(`${qualifyingResultsURL}${id}/qualifying.json`);
-    // fetchResults('https://ergast.com/api/f1/2021/10/sprint.json', setSprintResults);
     fetchResults(`${sprintResultsURL}${id}/sprint.json`, setSprintResults);
-    // console.log(`${sprintResultsURL}${id}/sprint.json`);
     fetchResults(`${resultsURL}${round}.json`, setAllResults);
-    console.log(`${resultsURL}${round}.json`)
     setLoading(false);
   }, []);
 
@@ -57,7 +47,11 @@ export default function RaceDetails() {
   }
 
   if (loading) {
-    return <Loading />
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    )
   }
 
   return (
@@ -66,7 +60,7 @@ export default function RaceDetails() {
       {allResults.Races && allResults.Races.length > 0 &&
         <div className="results-header-title">
           <p className="header-country">{allResults.Races[0].Circuit.Location.country}</p>
-          <p>{allResults.season}</p>
+          <p className="header-season-year">{allResults.season}</p>
           <p className="header-dates">
             {allResults.Races[0].FirstPractice.date.substring(8,)} {getFormattedMonth(allResults.Races[0].FirstPractice.date)} - {allResults.Races[0].date.substring(8,)} {getFormattedMonth(allResults.Races[0].date)}
           </p>
@@ -82,7 +76,7 @@ export default function RaceDetails() {
             <Timer allResults={allResults} />
           }
         </div>
-        <h1>RACE WEEKEND</h1>
+        <h1 className="race-results-heading">RACE WEEKEND</h1>
         {allResults.Races && allResults.Races.length > 0 && 
           <h3>FORMULA 1 {allResults.Races[0].raceName} {allResults.Races[0].season}</h3>
         }

@@ -7,7 +7,6 @@ export default function GrandPrix({grandPrix, index}) {
   let formattedMonth = new Date(date);
   const options = { month: 'short' };
   formattedMonth = formattedMonth.toLocaleDateString('en-US', options);
-  console.log(grandPrix);
 
   return (
     <Link 

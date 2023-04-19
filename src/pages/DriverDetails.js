@@ -1,9 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './DriverDetails.css';
-
-// http://ergast.com/api/f1/current/drivers/alonso/driverStandings.json
-// http://ergast.com/api/f1/drivers/alonso/results/1.json
 
 const driverURL = 'https://v1.formula-1.api-sports.io/drivers?search';
 const headers = {
@@ -14,24 +11,9 @@ const headers = {
   }
 }
 
-// const driverURL = 'https://api-formula-1.p.rapidapi.com/drivers?search';
-// const headers = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': 'e59e85ff0amsh10ee2743f1eae42p12d5fajsnf8760430a72b',
-// 		'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
-// 	}
-// };
-
-// https://v1.formula-1.api-sports.io/drivers?search=alonso
-// 51482715129beb99b4d1186651ad73a8
-// https://v1.formula-1.api-sports.io/drivers
-
-
 export default function DriverDetails() {
   // const { id, name, surname } = useParams();
   const { id } = useParams();
-  // console.log(id);
   const [driverInfo, setDriverInfo] = useState({});
 
   let modifiedId = id;
@@ -39,14 +21,12 @@ export default function DriverDetails() {
   if (/[_]/.test(id)) {
     modifiedId = id.split('_').join(' ');
   }
-  console.log(modifiedId);
 
   async function fetchDriverInfo(url) {
     try {
       const response = await fetch(`${url}=${modifiedId}`, headers);
       const driver = await response.json();
       setDriverInfo(driver);
-      console.log(driver);
     } catch (error) {
       console.log(error);
     }
@@ -58,66 +38,74 @@ export default function DriverDetails() {
   }, [id]);
 
   return (
-    <section className="drivers-container">
-      <div className="driver-info-container">
-        <div className="driver-image">
-          <div className="driver-image-wrapper">
-          {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
-            <img src={`images/drivers/${driverInfo.response[0].abbr}.jpg`} alt={driverInfo.response[0].name} />
-          }
+    <div className="drivers-body-container">
+      <section className="container-lg">
+        <div className="driver-info-container">
+          <div className="driver-image">
+            <div className="driver-image-wrapper">
+            {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
+              <img src={`images/drivers/${driverInfo.response[0].abbr}.jpg`} alt={driverInfo.response[0].name} />
+            }
+            </div>
+            {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
+            <div>
+              {/* <p className="driver-number">1</p> */}
+              <p className="driver-number">{driverInfo.response[0].number}</p>
+              <p className="driver-name">{driverInfo.response[0].name}</p>
+              {/* <p className="driver-name">Max Verstappen</p> */}
+            </div>
+            }
           </div>
-          {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
-          <div>
-            {/* <p className="driver-number">1</p> */}
-            <p className="driver-number">{driverInfo.response[0].number}</p>
-            <p className="driver-name">{driverInfo.response[0].name}</p>
-            {/* <p className="driver-name">Max Verstappen</p> */}
+          <div className="driver-info">
+            <div>
+              <p>Team</p>
+              <p>Country</p>
+              <p>Podiums</p>
+              <p>Points</p>
+              <p>Grands Prix entered</p>
+              <p>World Championships</p>
+              <p>Highest race finish</p>
+              <p>Highest grid position</p>
+              <p>Date of birth</p>
+              <p>Place of birth</p>
+            </div>
+            {/* <div>
+              <p>Team</p>
+              <p>Country</p>
+              <p>Podiums</p>
+              <p>Points</p>
+              <p>Grands Prix entered</p>
+              <p>World Championships</p>
+              <p>Highest race finish</p>
+              <p>Highest grid position</p>
+              <p>Date of birth</p>
+              <p>Place of birth</p>
+            </div> */}
+            {Object.keys(driverInfo).length > 0 && driverInfo.response && driverInfo.response.length > 0 &&
+            <div>
+              <p>{driverInfo.response[0].teams[0].team.name}</p>
+              <p>{driverInfo.response[0].country.name}</p>
+              <p>{driverInfo.response[0].podiums}</p>
+              <p>{driverInfo.response[0].career_points}</p>
+              <p>{driverInfo.response[0].grands_prix_entered}</p>
+              <p>{driverInfo.response[0].world_championships}</p>
+              <p>{driverInfo.response[0].highest_race_finish.position}(x{driverInfo.response[0].highest_race_finish.number})</p>
+              <p>{driverInfo.response[0].highest_grid_position}</p>
+              <p>{driverInfo.response[0].birthdate}</p>
+              <p>{driverInfo.response[0].birthplace}</p>
+            </div>
+            }
           </div>
-          }
         </div>
-        <div className="driver-info">
-          <div>
-            <p>Team</p>
-            <p>Country</p>
-            <p>Podiums</p>
-            <p>Points</p>
-            <p>Grands Prix entered</p>
-            <p>World Championships</p>
-            <p>Highest race finish</p>
-            <p>Highest grid position</p>
-            <p>Date of birth</p>
-            <p>Place of birth</p>
-          </div>
-          {/* <div>
-            <p>Team</p>
-            <p>Country</p>
-            <p>Podiums</p>
-            <p>Points</p>
-            <p>Grands Prix entered</p>
-            <p>World Championships</p>
-            <p>Highest race finish</p>
-            <p>Highest grid position</p>
-            <p>Date of birth</p>
-            <p>Place of birth</p>
-          </div> */}
-          {Object.keys(driverInfo).length > 0 && driverInfo.response && driverInfo.response.length > 0 &&
-          <div>
-            <p>{driverInfo.response[0].teams[0].team.name}</p>
-            <p>{driverInfo.response[0].country.name}</p>
-            <p>{driverInfo.response[0].podiums}</p>
-            <p>{driverInfo.response[0].career_points}</p>
-            <p>{driverInfo.response[0].grands_prix_entered}</p>
-            <p>{driverInfo.response[0].world_championships}</p>
-            <p>{driverInfo.response[0].highest_race_finish.position}(x{driverInfo.response[0].highest_race_finish.number})</p>
-            <p>{driverInfo.response[0].highest_grid_position}</p>
-            <p>{driverInfo.response[0].birthdate}</p>
-            <p>{driverInfo.response[0].birthplace}</p>
-          </div>
-          }
+        <h2>You Might Also Like</h2>
+        <div className="other-pages">
+          <Link>
+            <div>
+              
+            </div>
+          </Link>
         </div>
-      </div>
-      <h2>You Might Also Like</h2>
-
-    </section>
+      </section>
+    </div>
   )
 }

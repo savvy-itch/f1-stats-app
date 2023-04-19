@@ -20,7 +20,7 @@ export default function RaceResultsTable({ results, schedule, getFormattedMonth 
         <button className="results-btn" 
           onClick={() => setShowResults(!showResults)}>
           Results
-          <FaChevronDown style={{color: '#e10600', marginLeft: '10px'}} />
+          <FaChevronDown className={`chevron-icon ${showResults ? 'chevron-icon--rotate' : ''}`} />
         </button>
         }
       </article>
@@ -29,9 +29,9 @@ export default function RaceResultsTable({ results, schedule, getFormattedMonth 
           <thead>
             <tr>
               <th>pos</th>
-              <th>no</th>
+              <th className="collapse-column">no</th>
               <th>driver</th>
-              <th>team</th>
+              <th className="collapse-column">team</th>
               <th>laps</th>
               <th>time</th>
               <th>pts</th>
@@ -41,9 +41,9 @@ export default function RaceResultsTable({ results, schedule, getFormattedMonth 
             {results.Races[0].Results.map(rr => {
               return <tr key={rr.Driver.driverId}>
                 <td>{rr.position}</td>
-                <td>{rr.number}</td>
+                <td className="collapse-column">{rr.number}</td>
                 <td>{rr.Driver.givenName} {rr.Driver.familyName}</td>
-                <td>{rr.Constructor.name}</td>
+                <td className="collapse-column">{rr.Constructor.name}</td>
                 <td>{rr.laps}</td>
                 <td>{rr.Time ? rr.Time.time : 'DNF'}</td>
                 <td>{rr.points}</td>

@@ -1,9 +1,5 @@
-body {
-  background-color: white;
-}
 .drivers-container {
-  max-width: 1400px;
-  margin: 0 auto;
+  margin: calc(var(--navbar-height) + 30px) auto 0 auto;
 }
 .drivers-heading {
   padding: 1rem;
@@ -15,7 +11,7 @@ h1 {
   font-size: 2.5rem;
 }
 .drivers-desc {
-  background-color: #f9f9f9;
+  background-color: var(--main-light-color);
   font-size: 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 1rem;
@@ -125,34 +121,19 @@ h1 {
 }
 
 @media screen and (max-width: 1368px) {
-  .drivers-container {
-    max-width: 968px;
-  }
   .drivers-grid > a:nth-of-type(n+4) {
     flex: 0 0 33.3%;
   }
 }
 @media screen and (max-width: 1024px) {
-  .drivers-container {
-    max-width: 768px;
-  }
   .drivers-grid > a:nth-of-type(n+4),
   .drivers-grid > a:nth-of-type(-n+3) {
     flex: 0 0 50%;
   }
 }
 @media screen and (max-width: 768px) {
-  .drivers-container {
-    max-width: 568px;
-  }
   .drivers-grid > a:nth-of-type(n+4),
   .drivers-grid > a:nth-of-type(-n+3) {
     flex: 0 0 100%;
-  }
-}
-@media screen and (max-width: 568px) {
-  .drivers-container {
-    max-width: 100%;
-    padding: 0 .8rem;
   }
 }

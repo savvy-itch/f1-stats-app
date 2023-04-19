@@ -1,6 +1,6 @@
-body {
+/* body {
   background-color: #f7f4f1;
-}
+} */
 h3 {
   text-transform: uppercase;
 }
@@ -18,14 +18,16 @@ h3 {
   text-transform: uppercase;
   text-align: center;
   position: relative;
+  margin-top: var(--navbar-height);
 }
-.header-country {
+.header-country,
+.header-season-year {
   font-size: 3.2rem;
 }
 .header-dates {
   background-color: #15151e;
   font-family: 'F1 Regular', Tahoma, sans-serif;
-  font-size: 1rem;
+  font-size: .8rem;
   padding: 6px 10px;
   border-radius: 25px;
   width: fit-content;
@@ -94,7 +96,7 @@ h3 {
   border-left: none;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 0;
   width: 70%;
 }
 .results-table {
@@ -212,10 +214,15 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 }
 .results-btn:hover {
   cursor: pointer;
   border: 2px solid var(--highlight-color);
+}
+.chevron-icon {
+  color: var(--highlight-color);
+  margin-left: 10px;
 }
 
 /* -------------- Circuit Image ---------- */
@@ -246,7 +253,19 @@ h3 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.1rem;
 }
+.chevron-icon {
+  transform: rotate(0deg);
+  transition: transform .2s;
+}
+.chevron-icon--rotate {
+  transform: rotate(180deg);
+}
 
+@media screen and (max-width: 1450px) {
+  .container {
+    max-width: 1320px;
+  }
+}
 @media screen and (max-width: 1368px) {
   .container {
     max-width: 1200px;
@@ -279,6 +298,11 @@ h3 {
   .container {
     max-width: 768px;
   }
+  .header-country,
+  .header-season-year,
+  .race-results-heading {
+    font-size: 2rem;
+  }
   .results-tab {
     grid-template-columns: .8fr 4fr 1fr;
   }
@@ -303,5 +327,24 @@ h3 {
   }
   .container {
     max-width: 95vw;
+  }
+  .container > div {
+    align-items: center;
+  }
+  /* hide unnecessary columns on small screen */
+  .collapse-column {
+    display: none;
+  }
+  .results-table td {
+    padding: .4rem;
+  }
+  .results-container {
+    padding: 2rem 1rem 2rem 0;
+  }
+  .results-btn > p {
+    display: none;
+  }
+  .chevron-icon {
+    margin-left: 0;
   }
 }

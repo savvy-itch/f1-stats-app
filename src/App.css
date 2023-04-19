@@ -19,6 +19,9 @@
 
 body {
   --highlight-color: #e10600;
+  --main-dark-color: #15151e;
+  --main-light-color: #f9f9f9;
+
   --red_bull_color: #3671C6;
   --ferrari_color: #F91536;
   --mercedes_color: #6CD3BF;
@@ -33,8 +36,69 @@ body {
   --williams_color: #37BEDD;
 
   font-family: 'F1 Regular', sans-serif;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none;
   color: black;
+}
+.loading-container {
+  min-height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--navbar-height)
+}
+.container-lg {
+  width: 1400px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.container-sm {
+  width: 1320px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1600px) {
+  .container-lg {
+    max-width: 1320px;
+  }
+}
+@media screen and (max-width: 1368px) {
+  .container-lg,
+  .container-sm {
+    max-width: 1200px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container-lg,
+  .container-sm {
+    max-width: 1024px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .container-lg,
+  .container-sm {
+    max-width: 968px;
+  }
+}
+@media screen and (max-width: 968px) {
+  .container-lg,
+  .container-sm {
+    max-width: 768px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container-lg,
+  .container-sm {
+    max-width: 576px;
+  }
+}
+@media screen and (max-width: 568px) {
+  .container-lg,
+  .container-sm {
+    max-width: 100%;
+    padding: 0 .8rem;
+  }
 }

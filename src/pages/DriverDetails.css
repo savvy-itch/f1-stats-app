@@ -1,8 +1,9 @@
-body {
-  background-color: #f9f9f9;
+.drivers-body-container {
+  background-color: var(--main-light-color);
+  margin: var(--navbar-height) auto 0 auto;
+  padding-top: 2rem;
 }
 .driver-info-container {
-  padding-top: var(--navbar-height);
   display: flex;
   background-color: white;
   justify-content: space-between;

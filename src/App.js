@@ -13,6 +13,7 @@ import Archive from "./pages/Archive";
 import Error from './pages/Error';
 // import components
 import Navbar from './components/Navbar';
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/archive" element={<Archive />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

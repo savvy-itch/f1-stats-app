@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function NextRace({ nextRace }) {
   const {Races: [race]} = nextRace;
@@ -15,7 +15,7 @@ export default function NextRace({ nextRace }) {
 
   return (
     <article className="next-race">
-      <fieldset>
+      <fieldset className="container-sm">
         <legend className="grand-prix-round">Round {nextRace.round} - Up Next</legend>
         <div className="next-race-wrapper">
           <div className="next-race-inner-container">
