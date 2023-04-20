@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Loading from '../components/Loading';
+import { driversSublinks } from '../navbarContent';
 import './DriverDetails.css';
 
 const driverURL = 'https://v1.formula-1.api-sports.io/drivers?search';
@@ -13,6 +15,7 @@ const headers = {
 
 export default function DriverDetails() {
   // const { id, name, surname } = useParams();
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [driverInfo, setDriverInfo] = useState({});
 
@@ -24,10 +27,13 @@ export default function DriverDetails() {
 
   async function fetchDriverInfo(url) {
     try {
+      setLoading(true);
       const response = await fetch(`${url}=${modifiedId}`, headers);
       const driver = await response.json();
       setDriverInfo(driver);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -36,6 +42,14 @@ export default function DriverDetails() {
   useEffect(() => {
     fetchDriverInfo(driverURL);
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    )
+  }
 
   return (
     <div className="drivers-body-container">
@@ -97,9 +111,15 @@ export default function DriverDetails() {
             }
           </div>
         </div>
+        <div className="driver-bio">
+          <h2>Biography</h2>
+          {driversSublinks.find(d => d.id === id).bio.map((para, index) => {
+            return <p key={index}>{para}</p>
+          })}
+        </div>
         <h2>You Might Also Like</h2>
         <div className="other-pages">
-          <Link>
+          <Link to="">
             <div>
               
             </div>

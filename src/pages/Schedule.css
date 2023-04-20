@@ -13,7 +13,7 @@
   font-size: 2.5rem;
 }
 
-/* ------------------- Next Race -------------- */
+/* --------------- Next Race -------------- */
 .next-race {
   background-color: var(--main-dark-color);
   border-color: var(--highlight-color);
@@ -91,7 +91,6 @@
   padding: 1rem;
   padding-top: 10px;
   border-color: var(--highlight-color);
-  transition: .1s all ease;
   position: relative;
 }
 .grand-prix-inner-container {
@@ -102,6 +101,7 @@
   padding-right: .5rem;
   color: var(--highlight-color);
   text-transform: uppercase;
+  transition: .2s;
 }
 .grand-prix fieldset {
   border: none;
@@ -120,7 +120,7 @@
 .grand-prix fieldset:hover .grand-prix-round {
   transform: translateY(-20px);
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 /* border */
 .grand-prix fieldset::before {

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import Loading from '../components/Loading';
 import Team from '../components/Team';
 import './Teams.css';
 
 const TEAMS_URL = 'https://ergast.com/api/f1/current/constructorStandings.json';
 
-// All teams with points and wins: https://ergast.com/api/f1/current/constructorStandings.json
-
-// single team with drivers: https://ergast.com/api/f1/current/constructors/mclaren/results.json
-
 export default function Teams() {
+  const [loading, setLoading] = useState(false);
   const [teams, setTeams] = useState([]);
 
   async function fetchTeams(url) {
     try {
+      setLoading(true);
       const response = await fetch(url);
       const teams = await response.json();
       setTeams(teams.MRData.StandingsTable.StandingsLists[0]);
-      console.log(teams.MRData.StandingsTable.StandingsLists[0]);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -26,8 +26,16 @@ export default function Teams() {
     fetchTeams(TEAMS_URL);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    )
+  }
+
   return (
-    <div className="teams-container">
+    <div className="container-sm">
       <div className="teams-heading">
         <h1>F1 Teams 2023</h1>
       </div>

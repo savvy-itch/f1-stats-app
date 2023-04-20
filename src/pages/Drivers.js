@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import Loading from '../components/Loading';
 import Driver from '../components/Driver';
 import './Drivers.css'
 
 const DRIVERS_URL = 'https://ergast.com/api/f1/current/driverStandings.json';
 
 export default function Drivers() {
+  const [loading, setLoading] = useState(false);
   const [drivers, setDrivers] = useState([]);
 
   async function fetchDrivers(url) {
     try {
+      setLoading(true);
       const response = await fetch(url);
       const drivers = await response.json();
       setDrivers(drivers.MRData.StandingsTable.StandingsLists[0]);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -20,6 +25,14 @@ export default function Drivers() {
   useEffect(() => {
     fetchDrivers(DRIVERS_URL);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    )
+  }
 
   return (
     <div className="drivers-container container-lg">

@@ -1,4 +1,3 @@
-- add Loading
 - Navbar: on Drivers link's arrow hover sublinks disappear
 - Schedule: on race hover the 'round' font weight changes in current race
 - add similar news to You Might Also Like
@@ -7,4 +6,3 @@
 - Navbar: add sublinks for Schedule
 - check alt property of images
 - Navbar: add transition for sublinks
-- Drivers: add biography section

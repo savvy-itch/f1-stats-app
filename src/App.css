@@ -101,4 +101,8 @@ a {
     max-width: 100%;
     padding: 0 .8rem;
   }
+  /* hide unnecessary columns on small screen */
+  .collapse-column {
+    display: none;
+  }
 }

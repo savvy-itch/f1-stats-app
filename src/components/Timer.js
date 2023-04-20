@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 export default function Timer({ allResults }) {
   const [remainingTime, setRemainingTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const units = document.querySelectorAll('.unit > div');
 
   function format(unit) {
     if (unit < 10) {

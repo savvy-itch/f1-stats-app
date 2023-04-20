@@ -67,7 +67,7 @@ export default function RaceDetails() {
         </div>
       }
       </div>
-      <section className="container">
+      <section className="container-lg race-details-container">
         <div>
           {raceResults.Races && raceResults.Races.length > 0 &&
             <Podium raceResults={raceResults} />

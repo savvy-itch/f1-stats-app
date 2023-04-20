@@ -1,13 +1,18 @@
-/* body {
-  background-color: #f9f9f9;
-} */
+.team-body-container {
+  background-color: var(--main-light-color);
+  margin: var(--navbar-height) auto 0 auto;
+  padding-top: 2rem;
+}
+.team-body-container h1 {
+  font-size: 2.5rem;
+}
 .team-container {
   max-width: 1400px;
   margin: 0 auto;
 }
 .team-info-container {
   background-color: white;
-  padding: 0 3rem;
+  padding-left: 3rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -15,7 +20,6 @@
 .team-info {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   max-width: 48%;
   padding: 1rem 2rem 0 0;
 }
@@ -55,7 +59,7 @@
 }
 .single-driver-avatar-wrapper {
   max-width: 100%;
-  height: 440px;
+  max-height: 440px;
   overflow: hidden;
 }
 .single-driver-avatar-wrapper > img {
@@ -65,7 +69,7 @@
   transition: transform .2s;
 }
 .single-driver-name {
-  padding: 2rem 3rem;
+  padding: 2rem;
 }
 .single-driver-name > p:first-of-type {
   font-family: 'F1 Bold', sans-serif;
@@ -73,10 +77,10 @@
   margin-bottom: .4rem;
 }
 .single-driver-name > p:last-of-type {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .single-driver-name > span:last-child {
-  font-size: .7rem;
+  font-size: .6rem;
   text-transform: uppercase;
   color: gray;
 }
@@ -91,16 +95,7 @@
   color: white;
 }
 
-@media screen and (max-width: 1368px) {
-  .team-container {
-    max-width: 968px;
-  }
-}
 @media screen and (max-width: 1024px) {
-  .team-container {
-    max-width: 768px;
-    padding: 0 .8rem;
-  }
   .team-info-container {
     flex-direction: column;
     padding: 0;
@@ -113,14 +108,9 @@
     max-width: 100%;
   }
 }
-@media screen and (max-width: 768px) {
-  .team-container {
-    max-width: 568px;
-  }
-}
 @media screen and (max-width: 568px) {
-  .team-container {
-    max-width: 100%;
+  .team-body-container h1 {
+    font-size: 1.9rem;
   }
   .team-drivers-links-div {
     flex-direction: column;

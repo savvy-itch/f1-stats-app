@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // http://ergast.com/api/f1/current/constructors/mclaren/drivers.json
-const TEAM_DRIVERS_URL = 'http://ergast.com/api/f1/current/constructors/';
+const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
 
 export default function Team({ constructor }) {
   const [teamDrivers, setTeamDrivers] = useState([]);

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Loading from '../components/Loading';
 import ArchiveResultsTable from '../components/ArchiveResultsTable';
 import './Archive.css';
 
 const BASE_URL = 'https://ergast.com/api/f1';
 
 export default function Archive() {
+  const [loading, setLoading] = useState(false);
   const [year, setYear] = useState('2004');
   const [category, setCategory] = useState('races');
   const [dynamicCategoriesList, setDynamicCategoriesList] = useState([]);
@@ -49,11 +51,14 @@ export default function Archive() {
 
   async function fetchDynamicCategories(url) {
     try {
+      setLoading(true);
       const response = await fetch(url);
       let category = await response.json();
       category = category.MRData;
       setDynamicCategoriesList(category);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -61,10 +66,13 @@ export default function Archive() {
   // RESULTS
   async function fetchResults(url, dynamicCategory) {
     try {
+      setLoading(true);
       const response = await fetch(url);
       let results = await response.json();
       setResults(results.MRData);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -99,10 +107,17 @@ export default function Archive() {
     setDynamicCategory("all");
   }, [year, category]);
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <div className="archive-container">
+    <div className="archive-body-container">
+      <div className="archive-container container-lg">
         <section className="search-field">
           <select name="" id="" value={year} onChange={handleYearChange}>
             <option value="2004">2004</option>

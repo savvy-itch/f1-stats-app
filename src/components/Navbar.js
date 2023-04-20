@@ -25,8 +25,8 @@ export default function Navbar() {
       setSublinks(driversSublinks.map(item => {
         return (
           <Link to={`/drivers/${item.id}`} className="driver-sublink" key={item.name}>
-            <div className="sublink" style={{color: `var(--${item.team}_color)`}}>
-              <p className="text-white" style={{borderLeft: `6px solid var(--${item.team}_color)`}}>{item.name} <span>{item.surname}</span></p>
+            <div className="sublink" style={{color: `var(--${item.teamId}_color)`}}>
+              <p className="text-white" style={{borderLeft: `6px solid var(--${item.teamId}_color)`}}>{item.name} <span>{item.surname}</span></p>
               <FaChevronRight className="text-white" />
             </div>
         </Link>);

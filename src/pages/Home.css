@@ -1,0 +1,29 @@
+.parallax-container {
+  margin-top: var(--navbar-height);
+  display: flex;
+}
+.main-news {
+  background: transparent;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+.static-img {
+  background-image: url("/public/images/drivers/ALO.jpg");
+  min-height: 500px;
+  width: 50%;
+  max-width: 50%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+.scrollable-imgs {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+.scrollable-imgs img {
+  max-width: 100%;
+}

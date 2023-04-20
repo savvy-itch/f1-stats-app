@@ -16,18 +16,20 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
       setCurrentResults(results.StandingsTable.StandingsLists[0].ConstructorStandings);
     } else if (category === 'teams' && dynamicCategory !== 'all' && results.RaceTable) {
       setCurrentResults(results.RaceTable.Races);
+    } else if (category === 'fastest' && results.RaceTable) {
+      setCurrentResults(results.RaceTable.Races);
     }
   }, [year, category, dynamicCategory, results]);
 
   if (category === 'races' && dynamicCategory === 'all') {
     return (
-      <div className="archive-container">
+      <div className="archive-container container-lg">
         <h2>{year} Race Results</h2>
         <table className="archive-table">
           <thead>
             <tr>
               <th>GRAND PRIX</th>
-              <th>DATE</th>
+              <th className="collapse-column">DATE</th>
               <th>WINNER</th>
               <th>TEAM</th>
               <th>LAPS</th>
@@ -38,7 +40,7 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
           {currentResults.map((rr, index) => {
             return <tr key={index}>
               <td>{rr.raceName}</td>
-              <td>{rr.date}</td>
+              <td className="collapse-column">{rr.date}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.givenName} {rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.familyName}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Constructor.name}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].laps}</td>
@@ -59,8 +61,8 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             <tr>
               <th>POS</th>
               <th>DRIVER</th>
-              <th>TEAM</th>
-              <th>LAPS</th>
+              <th className="collapse-column">TEAM</th>
+              <th className="collapse-column">LAPS</th>
               <th>TIME/ISSUE</th>
               <th>PTS</th>
             </tr>
@@ -70,8 +72,8 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             return <tr key={index}>
               <td>{rr.position}</td>
               <td>{rr.Driver && rr.Driver.givenName} {rr.Driver && rr.Driver.familyName}</td>
-              <td>{rr.Constructor && rr.Constructor.name}</td>
-              <td>{rr.laps}</td>
+              <td className="collapse-column">{rr.Constructor && rr.Constructor.name}</td>
+              <td className="collapse-column">{rr.laps}</td>
               <td>{rr.Time ? rr.Time.time : rr.status}</td>
               <td>{rr.points}</td>
             </tr>
@@ -120,7 +122,7 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             <tr>
               <th>GRAND PRIX</th>
               <th>DATE</th>
-              <th>TEAM</th>
+              <th className="collapse-column">TEAM</th>
               <th>POS</th>
               <th>PTS</th>
             </tr>
@@ -130,7 +132,7 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             return <tr key={index}>
               <td>{rr.raceName}</td>
               <td>{rr.date}</td>
-              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Constructor.name}</td>
+              <td className="collapse-column">{rr.Results && rr.Results.length > 0 && rr.Results[0].Constructor.name}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].position}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].points}</td>
             </tr>
@@ -183,6 +185,32 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
               <td>{rr.raceName}</td>
               <td>{rr.date}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[1] && Number(rr.Results[0].points) + Number(rr.Results[1].points)}</td>
+            </tr>
+          })}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  if (category === 'fastest') {
+    return (
+      <div className="archive-container">
+        <table className="archive-table">
+          <thead>
+            <tr>
+              <th>GRAND PRIX</th>
+              <th>DRIVER</th>
+              <th>TEAM</th>
+              <th>TIME</th>
+            </tr>
+          </thead>
+          <tbody>
+          {currentResults.map((rr, index) => {
+            return <tr key={index}>
+              <td>{rr.raceName}</td>
+              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.givenName} {rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.familyName}</td>
+              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Constructor.name}</td>
+              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].FastestLap && rr.Results[0].FastestLap.Time.time}</td>
             </tr>
           })}
           </tbody>
