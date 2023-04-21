@@ -59,6 +59,9 @@ a {
   max-width: 1320px;
   margin: 0 auto;
 }
+.text--black {
+  color: black;
+}
 
 @media screen and (max-width: 1600px) {
   .container-lg {

@@ -1,29 +1,259 @@
-.parallax-container {
-  margin-top: var(--navbar-height);
+.news-container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: var(--navbar-height);
+  padding: 2rem;
+}
+.news-tag {
+  text-transform: uppercase;
+  color: var(--highlight-color);
+  font-size: .7rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
 }
 .main-news {
-  background: transparent;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:contain;
+  max-width: 48%;
+  position: relative;
+  padding: 1rem 1.5rem 0 0;
 }
-.static-img {
-  background-image: url("/public/images/drivers/ALO.jpg");
-  min-height: 500px;
-  width: 50%;
-  max-width: 50%;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:contain;
+/* border */
+.main-news::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: -2px;
+  top: -8px;
+  bottom: 0;
+  border-top: 10px solid var(--highlight-color);
+  border-right: 10px solid var(--highlight-color);
+  border-top-right-radius: 30px;
+  transition: .2s;
+  z-index: -1;
 }
-.scrollable-imgs {
+.main-news h2 {
+  font-family: 'F1 Bold', sans-serif;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+.main-news-thumbnail {
+  max-width: 100%;
+  overflow: hidden;
+  transition: .2s;
+}
+.main-news-thumbnail img {
+  max-width: 100%;
+  transform: scale(1);
+  transition: transform .5s cubic-bezier(.2,0,.05,1);
+}
+.other-news {
+  max-width: 48%;
   display: flex;
-  flex-direction: column;
-  max-width: 50%;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.scrollable-imgs img {
+.news-div {
+  max-width: 47%;
+  height: 47%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+/* border */
+.news-div::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-bottom: 1px solid #d0d0d2;
+  border-right: 1px solid #d0d0d2;
+  border-bottom-right-radius: 15px;
+  transition: .2s;
+  z-index: -1;
+}
+.news-thumbnail {
+  max-width: 100%;
+  max-height: 128px;
+  overflow: hidden;
+  transition: .2s;
+}
+.news-thumbnail img {
+  max-width: 100%;
+  transform: scale(1);
+  transition: transform .5s cubic-bezier(.2,0,.05,1);
+}
+.news-heading {
+  margin-top: .5rem;
+  padding: .3rem .6rem 1rem .6rem;
+  max-height: 95px;
+}
+.news-heading p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: .9rem;
+}
+.news-div:hover::before {
+  border-color: var(--highlight-color);
+}
+.news-div:hover .news-thumbnail img,
+.main-news:hover .main-news-thumbnail img {
+  transform: scale(1.1);
+}
+.main-news:hover h2 {
+  text-decoration: underline;
+}
+.tab-list {
+  display: flex;
+  justify-content: center;
+  background-color: #f7f4f1;
+}
+.tab {
+  background-color: transparent;
+  padding: 1rem 2rem;
+  border: 0;
+  font-family: 'F1 Regular';
+  text-transform: uppercase;
+  font-size: .8rem;
+  height: 100%;
+}
+.active-tab {
+  border-bottom: 4px solid var(--highlight-color);
+}
+.tab:hover {
+  border-bottom: 4px solid var(--highlight-color);
+}
+.tab:nth-last-of-type(2n) {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.tab:hover {
+  cursor: pointer;
+}
+.tab-results {
+  position: relative;
+  background-color: #f3f3f3;
+  padding-top: 1rem;
+  z-index: 1;
+}
+.tab-results::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-image: url(/public/images/home_bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  z-index: 0;
+}
+.tab-results-table {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tab-results-table > h2 {
+  font-family: 'F1 Wide', sans-serif;
+  color: white;
+  margin: 2rem 0;
+  text-align: center;
+}
+.tab-results-row {
+  display: grid;
+  grid-template-columns: .7fr 6fr 1fr .5fr;
+  padding: .8rem .5rem;
+  border-radius: 6px;
+  background-color: white;
+  margin: 2px 0;
+  font-size: .8rem;
+  align-items: center;
+  transition: .4s cubic-bezier(.35,.15,.6,1);
+}
+.tab-results-row > p:first-of-type {
+  justify-self: center;
+  padding-right: 1rem;
+  border-right: 5px solid currentColor;
+  color: black;
+  font-weight: bold;
+}
+.tab-results-row > p:nth-of-type(3n) {
+  justify-self: center;
+  font-size: .6rem;
+  padding: 5px 8px;
+  background-color: #ededed;
+  border-radius: 10px;
+}
+.tab-results-row svg {
+  color: var(--highlight-color);
+  justify-self: center;
+}
+.tab-row-team {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: .8rem;
+  color:#67676d;
+  padding-left: 10px;
+}
+.tab-results-row:hover {
+  background-color: #38383f;
+}
+.tab-results-row:hover p:not(:last-of-type),
+.tab-results-row:hover svg {
+  color: white;
+}
+
+/* ====== Podium Cards ======== */
+.tab-podium {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 6rem;
+  margin-bottom: 1rem;
+}
+.tab-podium-card {
+  min-width: 220px;
+}
+.tab-podium-avatar {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  min-height: 110px;
+  padding: 1rem;
+  border-radius: 15px 15px 0 0;
+  border-bottom: 10px solid currentColor;
+}
+.tab-podium-avatar img {
+  position: absolute;
+  bottom: -10px;
+  right: 5px;
+  max-width: 90%;
+}
+.tab-podium-avatar > h3 {
+  font-family: 'F1 Wide', sans-serif;
+  font-size: 1.3rem;
+  color: currentColor;
+}
+.tab-podium-name {
+  background-color: #38383f;
+  color: white;
+  padding: 1rem;
+  border-radius: 0 0 15px 15px;
+  width: 100%;
+}
+.tab-podium-name p:first-of-type {
+  font-size: .8rem;
+}
+.tab-podium-name p:last-of-type {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.winner-card {
+  min-width: 260px;
+}
+.winner-card .tab-podium-avatar {
+  min-height: 160px;
+}
+.winner-card .tab-podium-avatar img {
   max-width: 100%;
 }
