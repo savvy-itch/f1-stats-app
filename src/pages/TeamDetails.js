@@ -107,7 +107,7 @@ export default function TeamDetails() {
             {/* <Link to={`/drivers/${teamDrivers[0].driverId}/${teamDrivers[0].givenName}/${teamDrivers[0].familyName}`}> */}
             <Link to={`/drivers/${teamDrivers[0].driverId}`}>
               <div className="single-driver-avatar-wrapper">
-                <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt="" />
+                <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt={teamDrivers[0].driverId} />
               </div>
               <div className="single-driver-name">
                 <p>{teamDrivers[0].permanentNumber}</p>
@@ -122,7 +122,7 @@ export default function TeamDetails() {
             {/* <Link to={`/drivers/${teamDrivers[1].driverId}/${teamDrivers[1].givenName}/${teamDrivers[1].familyName}`}> */}
             <Link to={`/drivers/${teamDrivers[1].driverId}`}>
               <div className="single-driver-avatar-wrapper">
-                <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt="" />
+                <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt={teamDrivers[1].driverId} />
               </div>
               <div className="single-driver-name">
                 <p>{teamDrivers[1].permanentNumber}</p>

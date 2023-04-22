@@ -86,7 +86,7 @@
 .news-heading {
   margin-top: .5rem;
   padding: .3rem .6rem 1rem .6rem;
-  max-height: 95px;
+  /* max-height: 95px; */
 }
 .news-heading p {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -159,6 +159,8 @@
   margin: 2rem 0;
   text-align: center;
 }
+
+/* ========== Driver Standings ========== */
 .tab-results-row {
   display: grid;
   grid-template-columns: .7fr 6fr 1fr .5fr;
@@ -200,6 +202,14 @@
 .tab-results-row:hover p:not(:last-of-type),
 .tab-results-row:hover svg {
   color: white;
+}
+
+/* ========== Constructor Standings ========= */
+.tab-constructor-results-row {
+  grid-template-columns: .7fr 6fr 1fr .7fr .5fr;
+}
+.tab-constructor-results-row img {
+  max-width: 100%;
 }
 
 /* ====== Podium Cards ======== */
@@ -256,4 +266,185 @@
 }
 .winner-card .tab-podium-avatar img {
   max-width: 100%;
+}
+
+/* ========= Constructors Podium ======== */
+.tab-team-podium-card {
+  min-width: 220px;
+  max-width: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  padding: 1rem;
+  border-radius: 15px;
+}
+.winner-team-card {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 250px;
+  max-height: 250px;
+}
+.tab-team-podium-img-wrapper {
+  max-width: 100%;
+  position: relative;
+}
+.team-podium-logo-img {
+  max-width: 100%;
+}
+.team-podium-car-img {
+  max-width: 120%;
+  position: absolute;
+  bottom: -15px;
+}
+.tab-team-podium-card h3 {
+  font-family: 'F1 Wide', sans-serif;
+  font-size: 1.3rem;
+  color: currentColor;
+  margin-top: .5rem;
+}
+
+/* ========== Last Race Tab =========== */
+.tab-results-table > .tab-current-race-country {
+  margin-bottom: .5rem;
+}
+.tab-current-season {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'F1 Bold', sans-serif;
+}
+.tab-last-gp-name {
+  color: white;
+  text-transform: uppercase;
+  font-size: .8rem;
+  text-align: center;
+  margin: .8rem 0;
+}
+
+/* ========= Tab More Btn =========== */
+.tab-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+.tab-more-btn {
+  color: white;
+  background-color: var(--highlight-color);
+  font-size: .7rem;
+  padding: .6rem;
+  border: 2px solid var(--highlight-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+.tab-more-btn svg {
+  padding-left: 5px;
+}
+.tab-more-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+@media screen and (max-width: 1024px) {
+  .news-container {
+    flex-direction: column;
+    max-width: 768px;
+    margin: var(--navbar-height) auto 0 auto;
+  }
+  .main-news {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  } 
+  .other-news {
+    max-width: 100%;
+  } 
+  .tab-results-table {
+    max-width: 768px;
+    padding: 0 .8rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .tab-results-table {
+    max-width: 576px;
+    padding: 0 .8rem;
+  }
+  .tab-podium-card--hide {
+    display: none;
+  }
+  .tab-podium-card--display {
+    width: 100%;
+  }
+  .tab-podium-name {
+    display: none;
+  }
+  .tab-btn-wrapper > a {
+    width: 100%;
+  }
+  .tab-more-btn {
+    width: 100%;
+  }
+  .tab-row-team {
+    display: none;
+  }
+  .tab-results-row {
+    grid-template-columns: .7fr 4fr 2fr .5fr;
+  }
+  .winner-team-card {
+    max-width: 100%;
+  }
+  .team-podium-logo-img {
+    max-width: 40%;
+  }
+  .team-podium-car-img {
+    max-width: 60%;
+  }
+  .tab-team-podium-card {
+    min-width: auto;
+    max-width: 100%;
+    min-height: auto;
+    max-height: auto;
+  }
+  .winner-team-card {
+    min-width: auto;
+    max-width: 100%;
+    min-height: auto;
+    max-height: auto;
+    padding-bottom: 4rem;
+  }
+  .tab-row-car-img {
+    display: none;
+  }
+  .tab-constructor-results-row {
+    grid-template-columns: .7fr 3fr 1fr .5fr;
+  }
+}
+@media screen and (max-width: 568px) {
+  .news-container {
+    padding: 2rem 0;
+  }
+  .news-div {
+    height: auto;
+  }
+  .main-news h2 {
+    font-size: 1.5rem;
+  }
+  .tab {
+    font-size: .6rem;
+    padding: 1rem;
+  }
+  .tab-results-table h2 {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .winner-team-card {
+    padding-bottom: 2rem;
+  }
 }

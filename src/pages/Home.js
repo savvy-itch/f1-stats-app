@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import DriverStandingsTab from '../components/DriverStandingsTab';
+import ConstructorStandingsTab from '../components/ConstructorStandingsTab';
+import LastRaceTab from '../components/LastRaceTab';
+import { news } from '../news';
 import './Home.css';
 
 const DRIVERS_URL = 'https://ergast.com/api/f1/current/driverStandings.json?limit=10';
@@ -58,52 +60,29 @@ export default function Home() {
         <div className="news-container">
           <div className="main-news">
             <span className="news-tag">news</span>
-            <h2>Wolff says W14 pace is 'only the tip of the iceberg' as Mercedes upgrades imminent</h2>
+            <h2>{news[0].headline}</h2>
             <div className="main-news-thumbnail">
-              <img src="/images/news/news_thumbnail.png" alt="" />
+              <img src={news[0].image} alt="news-thumbnail" />
             </div>
           </div>
 
           <div className="other-news">
-            <div className="news-div">
-              <div className="news-thumbnail">
-                <img src="/images/news/news1_thumbnail.png" alt="" />
-              </div>
-              <div className="news-heading">
-                <span className="news-tag">news</span>
-                <p>McLaren form new driver development programme led by ex-driver Emanuele Pirro</p>
-              </div>
-            </div>
-            <div className="news-div">
-              <div className="news-thumbnail">
-                <img src="/images/news/news1_thumbnail.png" alt="" />
-              </div>
-              <div className="news-heading">
-                <span className="news-tag">news</span>
-                <p>McLaren form new driver development programme led by ex-driver Emanuele Pirro</p>
-              </div>
-            </div>
-            <div className="news-div">
-              <div className="news-thumbnail">
-                <img src="/images/news/news1_thumbnail.png" alt="" />
-              </div>
-              <div className="news-heading">
-                <span className="news-tag">news</span>
-                <p>McLaren form new driver development programme led by ex-driver Emanuele Pirro</p>
-              </div>
-            </div>
-            <div className="news-div">
-              <div className="news-thumbnail">
-                <img src="/images/news/news1_thumbnail.png" alt="" />
-              </div>
-              <div className="news-heading">
-                <span className="news-tag">news</span>
-                <p>McLaren form new driver development programme led by ex-driver Emanuele Pirro</p>
-              </div>
-            </div>
+            {news.map((elem, index) => {
+              if (index > 0) {
+                return (
+                <div className="news-div" key={index}>
+                  <div className="news-thumbnail">
+                    <img src={elem.image} alt="other-news-card" />
+                  </div>
+                  <div className="news-heading">
+                    <span className="news-tag">news</span>
+                    <p>{elem.headline}</p>
+                  </div>
+                </div>)
+              }
+            })}
           </div>
         </div>
-
       </div>
       <div className="tab-list">
         <button className={`tab ${selectedTab === 'drivers' ? 'active-tab': ''}`} value="drivers" onClick={handleTabClick}><p>Drivers</p></button>
@@ -111,28 +90,9 @@ export default function Home() {
         <button className={`tab ${selectedTab === 'last-race' ? 'active-tab': ''}`} value="last-race" onClick={handleTabClick}><p>Last Race</p></button>
       </div>
       <div className="tab-results">
-        {selectedTab === 'drivers' && <DriverStandingsTab results={results} />
-        }
-        {selectedTab === 'constructors' && results.StandingsTable 
-        && results.StandingsTable.StandingsLists[0].ConstructorStandings.map(item => {
-          return (
-          <div className="tab-results-row" key={item.position}>
-            <p>{item.position}</p>
-            <p>{item.Constructor.name}</p>
-            <p>{item.points}</p>
-          </div>)
-        })
-        }
-        {selectedTab === 'last-race' && results.RaceTable 
-        && results.RaceTable.Races[0].Results.map(item => {
-          return (
-          <div className="tab-results-row" key={item.position}>
-            <p>{item.position}</p>
-            <p>{item.Driver.givenName} {item.Driver.familyName}</p>
-            <p>{item.points}</p>
-          </div>)
-        })
-        }
+        {selectedTab === 'drivers' && <DriverStandingsTab results={results} />}
+        {selectedTab === 'constructors' && <ConstructorStandingsTab results={results} />}
+        {selectedTab === 'last-race' && <LastRaceTab results={results} />}
       </div>
     </>
   )

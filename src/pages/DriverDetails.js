@@ -14,7 +14,6 @@ const headers = {
 }
 
 export default function DriverDetails() {
-  // const { id, name, surname } = useParams();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [driverInfo, setDriverInfo] = useState({});
@@ -116,14 +115,6 @@ export default function DriverDetails() {
           {driversSublinks.find(d => d.id === id).bio.map((para, index) => {
             return <p key={index}>{para}</p>
           })}
-        </div>
-        <h2>You Might Also Like</h2>
-        <div className="other-pages">
-          <Link to="">
-            <div>
-              
-            </div>
-          </Link>
         </div>
       </section>
     </div>
