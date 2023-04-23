@@ -13,6 +13,7 @@ export default function Navbar() {
   const menuRef = useRef(null);
   
   function displaySublinks(e) {
+    console.log(e.currentTarget);
     if (e.currentTarget.dataset.link === 'drivers') {
       setMainSublink(
         <Link to="/drivers" className="driver-sublink">

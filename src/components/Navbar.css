@@ -75,15 +75,13 @@ body {
   top: var(--navbar-height);
   z-index: 100;
   padding: 2rem 5rem;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  transition: opacity .3s;
-  opacity: 0;
   border-bottom: 1px solid var(--highlight-color);
 }
 .show-sublinks {
-  opacity: 1;
+  display: grid;
 }
 .sublink {
   color: white;
