@@ -1,5 +1,1 @@
-- Navbar: on Drivers link's arrow hover sublinks disappear
-- Schedule: on race hover the 'round' font weight changes in current race
-- модифицировать класс results-table, чтобы по умолчанию он отображал, а не скрывал контент
 - Navbar: add sublinks for Schedule
-- Navbar: add transition for sublinks

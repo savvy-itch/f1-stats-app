@@ -107,7 +107,7 @@ export default function Navbar() {
           <ul>
             <li data-link="home"><Link to="/">Home</Link></li>
             <li data-link="schedule"><Link to="/schedule">Schedule</Link></li>
-            <li data-link="drivers" onMouseEnter={displaySublinks} onMouseOut={hideSublinks}>
+            <li data-link="drivers" onMouseOver={displaySublinks} onMouseOut={hideSublinks}>
               <Link to="/drivers">Drivers
                 <FaChevronDown />
               </Link>

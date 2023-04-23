@@ -4,7 +4,7 @@ import NextRace from '../components/NextRace';
 import Loading from '../components/Loading';
 import './Schedule.css'
 
-const url1 = 'http://ergast.com/api/f1/current.json';
+const url1 = 'https://ergast.com/api/f1/current.json';
 const nextRaceUrl = 'https://ergast.com/api/f1/current/next.json'
 
 export default function Schedule() {
