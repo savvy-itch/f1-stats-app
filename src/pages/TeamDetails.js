@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import './TeamDetails.css';
 
-const TEAM_DRIVERS_URL = 'http://ergast.com/api/f1/current/constructors/';
+const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
 const TEAM_INFO_URL = 'https://v1.formula-1.api-sports.io/teams?search';
 const headers = {
 	"method": "GET",
@@ -104,7 +104,6 @@ export default function TeamDetails() {
           {teamDrivers && teamDrivers.length > 0 &&
           <div className="team-drivers-links-div">
             <div className="single-driver-div">
-            {/* <Link to={`/drivers/${teamDrivers[0].driverId}/${teamDrivers[0].givenName}/${teamDrivers[0].familyName}`}> */}
             <Link to={`/drivers/${teamDrivers[0].driverId}`}>
               <div className="single-driver-avatar-wrapper">
                 <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt={teamDrivers[0].driverId} />
@@ -119,7 +118,6 @@ export default function TeamDetails() {
             </Link>
             </div>
             <div className="single-driver-div">
-            {/* <Link to={`/drivers/${teamDrivers[1].driverId}/${teamDrivers[1].givenName}/${teamDrivers[1].familyName}`}> */}
             <Link to={`/drivers/${teamDrivers[1].driverId}`}>
               <div className="single-driver-avatar-wrapper">
                 <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt={teamDrivers[1].driverId} />
@@ -136,7 +134,6 @@ export default function TeamDetails() {
           </div>
           }
         </section>
-        <h2>You Might Also Like</h2>
       </div>
     </div>
   )

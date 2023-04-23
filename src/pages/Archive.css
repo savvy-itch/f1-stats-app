@@ -67,7 +67,7 @@
     border: 0;
   }
   .archive-container {
-    padding: 0;
+    padding: 0 .8rem;
   }
   .archive-table td {
     padding: .6rem 1rem;
@@ -75,6 +75,11 @@
   }
 }
 @media screen and (max-width: 568px) {
+  .archive-container h2 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
   .archive-table td {
     padding: .5rem;
   }

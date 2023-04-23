@@ -21,12 +21,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/schedule" element={<Schedule />} />
+        <Route exact path="/schedule" element={<Schedule />} />
         <Route path="/schedule/:id/:round" element={<RaceDetails />} />
         <Route exact path="/drivers" element={<Drivers />} />
         {/* <Route path="/drivers/:id/:name/:surname" element={<DriverDetails />} /> */}
         <Route exact path="/drivers/:id" element={<DriverDetails />} />
-        <Route path="/teams" element={<Teams />} />
+        <Route exact path="/teams" element={<Teams />} />
         <Route path="/teams/:id/:name" element={<TeamDetails />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="*" element={<Error />} />

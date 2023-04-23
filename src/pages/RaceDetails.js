@@ -10,7 +10,7 @@ import './RaceDetails.css';
 
 const raceResultsURL = 'https://ergast.com/api/f1/current/circuits/';
 const qualifyingResultsURL = 'https://ergast.com/api/f1/current/circuits/';
-const sprintResultsURL = 'http://ergast.com/api/f1/current/circuits/';
+const sprintResultsURL = 'https://ergast.com/api/f1/current/circuits/';
 const resultsURL = 'https://ergast.com/api/f1/current/';
 
 export default function RaceDetails() {

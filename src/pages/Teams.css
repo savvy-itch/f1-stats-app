@@ -167,3 +167,17 @@
     grid-template-columns: 1fr;
   }
 }
+@media screen and (max-width: 568px) {
+  .teams-heading > h1 {
+    font-size: 1.8rem;
+  }
+  .teams-desc {
+    font-size: .8rem;
+  }
+  .team-single-driver-avatar {
+    display: none;
+  }
+  .team-card {
+    padding: 0;
+  }
+}

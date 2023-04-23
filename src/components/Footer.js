@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="footer-column">
           <h3>References</h3>
           <a href="https://www.formula1.com" target='_blank'>The official Formula 1 website</a>
-          <a href="http://ergast.com/mrd/terms/" target='_blank'>Ergast API</a>
+          <a href="https://ergast.com/mrd/terms/" target='_blank'>Ergast API</a>
           <a href="https://api-sports.io/documentation/formula-1/v1" target='_blank'>API-FORMULA-1</a>
         </div>
         <div className="footer-contact">

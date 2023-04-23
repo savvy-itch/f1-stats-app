@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// http://ergast.com/api/f1/current/constructors/mclaren/drivers.json
 const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
 
 export default function Team({ constructor }) {
@@ -10,14 +9,11 @@ export default function Team({ constructor }) {
     color: `var(--${constructor.Constructor.constructorId}_color)`,
   }
 
-  console.log(constructor)
-
   async function fetchTeamDrivers(url) {
     try {
       const response = await fetch(url);
       const teamDrivers = await response.json();
       setTeamDrivers(teamDrivers.MRData.DriverTable.Drivers);
-      // console.log(teamDrivers.MRData.DriverTable.Drivers);
     } catch (error) {
       console.log(error);
     }

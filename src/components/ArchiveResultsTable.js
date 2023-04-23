@@ -32,8 +32,8 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
               <th className="collapse-column">DATE</th>
               <th>WINNER</th>
               <th>TEAM</th>
-              <th>LAPS</th>
-              <th>TIME</th>
+              <th className="collapse-column">LAPS</th>
+              <th className="collapse-column">TIME</th>
             </tr>
           </thead>
           <tbody>
@@ -43,8 +43,8 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
               <td className="collapse-column">{rr.date}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.givenName} {rr.Results && rr.Results.length > 0 && rr.Results[0].Driver.familyName}</td>
               <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Constructor.name}</td>
-              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].laps}</td>
-              <td>{rr.Results && rr.Results.length > 0 && rr.Results[0].Time && rr.Results[0].Time.time}</td>
+              <td className="collapse-column">{rr.Results && rr.Results.length > 0 && rr.Results[0].laps}</td>
+              <td className="collapse-column">{rr.Results && rr.Results.length > 0 && rr.Results[0].Time && rr.Results[0].Time.time}</td>
             </tr>
           })}
           </tbody>
@@ -92,7 +92,7 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             <tr>
               <th>POS</th>
               <th>DRIVER</th>
-              <th>NATIONALITY</th>
+              <th className="collapse-column">NATIONALITY</th>
               <th>TEAM</th>
               <th>PTS</th>
             </tr>
@@ -102,7 +102,7 @@ export default function ArchiveResultsTable({ year, category, dynamicCategory, s
             return <tr key={index}>
               <td>{rr.position}</td>
               <td>{rr.Driver && rr.Driver.givenName} {rr.Driver && rr.Driver.familyName}</td>
-              <td>{rr.Driver && rr.Driver.nationality}</td>
+              <td className="collapse-column">{rr.Driver && rr.Driver.nationality}</td>
               <td>{rr.Constructors && rr.Constructors.length > 0 && rr.Constructors[0].name}</td>
               <td>{rr.points}</td>
             </tr>
