@@ -22,7 +22,7 @@
   gap: .5rem;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 /* ======== TEAM CARD ========= */
@@ -179,5 +179,27 @@
   }
   .team-card {
     padding: 0;
+  }
+  .teams-grid > a {
+    max-width: 100%;
+  }
+  .team-position > div:first-child {
+    font-size: 2rem;
+  }
+  .team-pos-pts {
+    font-size: 1rem;
+  }
+  .team-name p {
+    font-size: 1.2rem;
+  }
+  .team-single-driver-name {
+    font-size: .8rem;
+    flex-direction: column;
+  }
+  .team-single-driver-name > p:last-of-type {
+    margin-left: 0;
+  }
+  .team-image-div > img {
+    max-width: 80%;
   }
 }
