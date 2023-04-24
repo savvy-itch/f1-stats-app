@@ -8,11 +8,9 @@ export default function Error() {
     <section className="error-page">
       <h1>Oops!</h1>
       <p>Looks like it's a dead end.</p>
-      <button>
-        <Link to="/">
-          Go Home
-        </Link>
-      </button>
+      <Link to="/">
+        <button className="error-btn">Go Home</button>
+      </Link>
     </section>
   )
 }

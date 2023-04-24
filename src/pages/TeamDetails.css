@@ -1,6 +1,6 @@
 .team-body-container {
   background-color: var(--main-light-color);
-  margin: var(--navbar-height) auto 0 auto;
+  margin: var(--navbar-height) auto 1.5rem auto;
   padding-top: 2rem;
 }
 .team-body-container h1 {
@@ -25,14 +25,16 @@
 }
 .team-info-logo {
   max-width: 50%;
+  display: flex;
+  justify-content: space-between;
 }
 .team-info-logo > img {
   max-width: 100%;
 }
-.team-info > div {
+/* .team-info > div {
   display: flex;
   justify-content: space-between;
-}
+} */
 .team-info-stats {
   display: flex;
   justify-content: space-between;
@@ -44,9 +46,15 @@
 .team-info-stats > div:first-of-type {
   font-weight: 700;
   margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .team-info-stats > div:last-of-type {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .team-drivers-links-div {
   display: flex;
@@ -118,11 +126,17 @@
   .single-driver-div {
     max-width: 100%;
   }
+  .team-info {
+    padding: 1rem 0 0 0;
+  }
   .team-info-logo {
     max-width: 100%;
     align-items: center;
   }
   .team-info-logo > img {
     max-width: 70%;
+  }
+  .team-info-logo {
+    justify-content: center;
   }
 }

@@ -3,6 +3,8 @@ import Loading from '../components/Loading';
 import DriverStandingsTab from '../components/DriverStandingsTab';
 import ConstructorStandingsTab from '../components/ConstructorStandingsTab';
 import LastRaceTab from '../components/LastRaceTab';
+import ScrollToTop from '../components/ScrollToTop';
+import GoToTopBtn from '../components/GoToTopBtn';
 import { news } from '../news';
 import './Home.css';
 
@@ -55,7 +57,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <ScrollToTop>
       <div className="container-sm">
         <div className="news-container">
           <div className="main-news">
@@ -94,6 +96,7 @@ export default function Home() {
         {selectedTab === 'constructors' && <ConstructorStandingsTab results={results} />}
         {selectedTab === 'last-race' && <LastRaceTab results={results} />}
       </div>
-    </>
+      <GoToTopBtn />
+    </ScrollToTop>
   )
 }

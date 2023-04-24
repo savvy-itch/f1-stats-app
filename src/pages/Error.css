@@ -8,6 +8,21 @@
 }
 .error-page h1,
 .error-page p,
-.error-page button {
+.error-btn {
   margin: .5rem 0;
+}
+.error-btn {
+  color: white;
+  background-color: var(--highlight-color);
+  font-size: .8rem;
+  text-transform: uppercase;
+  padding: .6rem;
+  border: 2px solid var(--highlight-color);
+  border-radius: 4px;
+  transition: .3s;
+}
+.error-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }

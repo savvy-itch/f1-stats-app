@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
 import Team from '../components/Team';
+import ScrollToTop from '../components/ScrollToTop';
+import GoToTopBtn from '../components/GoToTopBtn';
 import './Teams.css';
 
 const TEAMS_URL = 'https://ergast.com/api/f1/current/constructorStandings.json';
@@ -35,18 +37,21 @@ export default function Teams() {
   }
 
   return (
-    <div className="container-sm">
-      <div className="teams-heading">
-        <h1>F1 Teams 2023</h1>
+    <ScrollToTop>
+      <div className="container-sm">
+        <div className="teams-heading">
+          <h1>F1 Teams 2023</h1>
+        </div>
+        <div className="teams-desc">
+        Discover everything you need to know about this year's Formula 1 teams - drivers, podium finishes, points earned and championship titles.
+        </div>
+        <div className="teams-grid">
+        {teams.ConstructorStandings && teams.ConstructorStandings.map(c => {
+          return <Team constructor={c} key={c.Constructor.constructorId} />
+        })}
+        </div>
       </div>
-      <div className="teams-desc">
-      Discover everything you need to know about this year's Formula 1 teams - drivers, podium finishes, points earned and championship titles.
-      </div>
-      <div className="teams-grid">
-      {teams.ConstructorStandings && teams.ConstructorStandings.map(c => {
-        return <Team constructor={c} key={c.Constructor.constructorId} />
-      })}
-      </div>
-    </div>
+      <GoToTopBtn />
+    </ScrollToTop>
   )
 }

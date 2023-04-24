@@ -6,6 +6,8 @@ import QualificationResultsTable from '../components/QualificationResultsTable';
 import SprintResultsTable from '../components/SprintResultsTable';
 import Podium from '../components/Podium';
 import Timer from '../components/Timer';
+import ScrollToTop from '../components/ScrollToTop';
+import GoToTopBtn from '../components/GoToTopBtn';
 import './RaceDetails.css';
 
 const raceResultsURL = 'https://ergast.com/api/f1/current/circuits/';
@@ -55,65 +57,68 @@ export default function RaceDetails() {
   }
 
   return (
-    <div>
-      <div className="results-header" style={{backgroundImage: `url(images/headers/${raceResults.circuitId}_header.png)`}}>
-      {allResults.Races && allResults.Races.length > 0 &&
-        <div className="results-header-title">
-          <p className="header-country">{allResults.Races[0].Circuit.Location.country}</p>
-          <p className="header-season-year">{allResults.season}</p>
-          <p className="header-dates">
-            {allResults.Races[0].FirstPractice.date.substring(8,)} {getFormattedMonth(allResults.Races[0].FirstPractice.date)} - {allResults.Races[0].date.substring(8,)} {getFormattedMonth(allResults.Races[0].date)}
-          </p>
-        </div>
-      }
-      </div>
-      <section className="container-lg race-details-container">
-        <div>
-          {raceResults.Races && raceResults.Races.length > 0 &&
-            <Podium raceResults={raceResults} />
-          }
-          {allResults.Races && allResults.Races.length > 0 && raceResults.Races && raceResults.Races.length < 1 &&
-            <Timer allResults={allResults} />
-          }
-        </div>
-        <h1 className="race-results-heading">RACE WEEKEND</h1>
-        {allResults.Races && allResults.Races.length > 0 && 
-          <h3>FORMULA 1 {allResults.Races[0].raceName} {allResults.Races[0].season}</h3>
+    <ScrollToTop>
+      <div>
+        <div className="results-header" style={{backgroundImage: `url(images/headers/${raceResults.circuitId}_header.png)`}}>
+        {allResults.Races && allResults.Races.length > 0 &&
+          <div className="results-header-title">
+            <p className="header-country">{allResults.Races[0].Circuit.Location.country}</p>
+            <p className="header-season-year">{allResults.season}</p>
+            <p className="header-dates">
+              {allResults.Races[0].FirstPractice.date.substring(8,)} {getFormattedMonth(allResults.Races[0].FirstPractice.date)} - {allResults.Races[0].date.substring(8,)} {getFormattedMonth(allResults.Races[0].date)}
+            </p>
+          </div>
         }
-        <div>
-          <div className="results-container">
-            <RaceResultsTable 
-              results={raceResults}
-              schedule={allResults}
-              getFormattedMonth={getFormattedMonth}
-            />
-            {allResults.Races && allResults.Races[0].Sprint &&
-              <SprintResultsTable 
-                results={sprintResults}
+        </div>
+        <section className="container-lg race-details-container">
+          <div>
+            {raceResults.Races && raceResults.Races.length > 0 &&
+              <Podium raceResults={raceResults} />
+            }
+            {allResults.Races && allResults.Races.length > 0 && raceResults.Races && raceResults.Races.length < 1 &&
+              <Timer allResults={allResults} />
+            }
+          </div>
+          <h1 className="race-results-heading">RACE WEEKEND</h1>
+          {allResults.Races && allResults.Races.length > 0 && 
+            <h3>FORMULA 1 {allResults.Races[0].raceName} {allResults.Races[0].season}</h3>
+          }
+          <div>
+            <div className="results-container">
+              <RaceResultsTable 
+                results={raceResults}
+                schedule={allResults}
+                getFormattedMonth={getFormattedMonth}
+              />
+              {allResults.Races && allResults.Races[0].Sprint &&
+                <SprintResultsTable 
+                  results={sprintResults}
+                  schedule={allResults}
+                  getFormattedMonth={getFormattedMonth} 
+                />
+              }
+              <QualificationResultsTable 
+                results={qualificationResults}
                 schedule={allResults}
                 getFormattedMonth={getFormattedMonth} 
               />
-            }
-            <QualificationResultsTable 
-              results={qualificationResults}
-              schedule={allResults}
-              getFormattedMonth={getFormattedMonth} 
-            />
+            </div>
+            <div className="circuit-image-wrapper">
+              <img src={`images/circuits/${raceResults.circuitId}.png`} alt={raceResults.circuitId} />
+              {allResults.Races && allResults.Races.length > 0 &&
+                <p>{allResults.Races[0].Circuit.circuitName}</p>
+              }
+            </div>
           </div>
-          <div className="circuit-image-wrapper">
-            <img src={`images/circuits/${raceResults.circuitId}.png`} alt={raceResults.circuitId} />
+          <div className="details-info">
             {allResults.Races && allResults.Races.length > 0 &&
-              <p>{allResults.Races[0].Circuit.circuitName}</p>
+              <p>Get up to speed with everything you need to know about the {allResults.Races[0].season} {allResults.Races[0].raceName}</p>
             }
+            <p>Using the links above you can find the full weekend schedule, including details of practice and qualifying sessions, support races, press conferences and special events, plus the latest news headlines, circuit information and F1 race results.</p>
           </div>
-        </div>
-        <div className="details-info">
-          {allResults.Races && allResults.Races.length > 0 &&
-            <p>Get up to speed with everything you need to know about the {allResults.Races[0].season} {allResults.Races[0].raceName}</p>
-          }
-          <p>Using the links above you can find the full weekend schedule, including details of practice and qualifying sessions, support races, press conferences and special events, plus the latest news headlines, circuit information and F1 race results.</p>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+      <GoToTopBtn />
+    </ScrollToTop>
   )
 }

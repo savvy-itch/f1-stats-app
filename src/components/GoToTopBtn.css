@@ -1,0 +1,22 @@
+.app-container {
+  position: relative;
+}
+.teleport-btn {
+  display: none;
+  position: fixed;
+  bottom: 5vh;
+  right: 10px;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--highlight-color);
+  color: white;
+  z-index: 100;
+}
+@media screen and (max-width: 568px) {
+  .show-teleport-btn {
+    display: block;
+  }
+}

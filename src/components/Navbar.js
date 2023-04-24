@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaChevronRight, FaBars } from "react-icons/fa";
 import './Navbar.css';
 import { driversSublinks, teamsSublinks } from '../navbarContent';
@@ -11,9 +11,9 @@ export default function Navbar() {
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
   const [linksDelay, setLinksDelay] = useState(0);
   const menuRef = useRef(null);
+  const location = useLocation();
   
   function displaySublinks(e) {
-    console.log(e.currentTarget);
     if (e.currentTarget.dataset.link === 'drivers') {
       setMainSublink(
         <Link to="/drivers" className="driver-sublink">
@@ -94,7 +94,12 @@ export default function Navbar() {
         menuRef.current.style.height = '0';
       }
     }
-  }, [showDropdownMenu])
+  }, [showDropdownMenu]);
+
+  // hide dropdown menu after clicking menu links
+  useEffect(() => {
+    setShowDropdownMenu(false);
+  }, [location])
 
   return (
     <div>

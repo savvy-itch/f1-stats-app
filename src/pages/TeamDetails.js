@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Loading from '../components/Loading';
+import ScrollToTop from '../components/ScrollToTop';
+import GoToTopBtn from '../components/GoToTopBtn';
 import './TeamDetails.css';
 
 const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
@@ -60,81 +62,84 @@ export default function TeamDetails() {
   }
 
   return (
-    <div className="team-body-container">
-      <div className="container-lg">
-        {teamInfo && Object.keys(teamInfo).length > 0 &&
-        <h1>{teamInfo.name}</h1>
-        }
-        <section className="team-info-container">
-          <div className="team-info">
-            <div className="team-info-logo">
-              <img src={`/images/teams/${name}_logo_lg.jpg`} alt={name} />
-            </div>
-            <div className="team-info-stats">
-              <div>
-                <p>Team</p>
-                <p>Base</p>
-                <p>Team Chief</p>
-                <p>Technical Chief</p>
-                <p>Chassis</p>
-                <p>Power Unit</p>
-                <p>First Team Entry</p>
-                <p>World Championships</p>
-                <p>Highest Race Finish</p>
-                <p>Pole Positions</p>
-                <p>Fastest Laps</p>
-              </div>
-              {teamInfo && Object.keys(teamInfo).length > 0 &&
-              <div>
-                <p>{teamInfo.name}</p>
-                <p>{teamInfo.base}</p>
-                <p>{teamInfo.director}</p>
-                <p>{teamInfo.technical_manager}</p>
-                <p>{teamInfo.chassis}</p>
-                <p>{teamInfo.engine}</p>
-                <p>{teamInfo.first_team_entry}</p>
-                <p>{teamInfo.world_championships}</p>
-                <p>{teamInfo.highest_race_finish.position}(x{teamInfo.highest_race_finish.number})</p>
-                <p>{teamInfo.pole_positions}</p>
-                <p>{teamInfo.fastest_laps}</p>
-              </div>
-              }
-            </div>
-          </div>
-          {teamDrivers && teamDrivers.length > 0 &&
-          <div className="team-drivers-links-div">
-            <div className="single-driver-div">
-            <Link to={`/drivers/${teamDrivers[0].driverId}`}>
-              <div className="single-driver-avatar-wrapper">
-                <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt={teamDrivers[0].driverId} />
-              </div>
-              <div className="single-driver-name">
-                <p>{teamDrivers[0].permanentNumber}</p>
-                <p>{teamDrivers[0].givenName} {teamDrivers[0].familyName}</p>
-                {teamInfo && Object.keys(teamInfo).length > 0 &&
-                <span>{teamInfo.name}</span>
-                }
-              </div>
-            </Link>
-            </div>
-            <div className="single-driver-div">
-            <Link to={`/drivers/${teamDrivers[1].driverId}`}>
-              <div className="single-driver-avatar-wrapper">
-                <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt={teamDrivers[1].driverId} />
-              </div>
-              <div className="single-driver-name">
-                <p>{teamDrivers[1].permanentNumber}</p>
-                <p>{teamDrivers[1].givenName} {teamDrivers[1].familyName}</p>
-                {teamInfo && Object.keys(teamInfo).length > 0 &&
-                <span>{teamInfo.name}</span>
-                }
-              </div>
-            </Link>
-            </div>
-          </div>
+    <ScrollToTop>
+      <div className="team-body-container">
+        <div className="container-lg">
+          {teamInfo && Object.keys(teamInfo).length > 0 &&
+          <h1>{teamInfo.name}</h1>
           }
-        </section>
+          <section className="team-info-container">
+            <div className="team-info">
+              <div className="team-info-logo">
+                <img src={`/images/teams/${name}_logo_lg.jpg`} alt={name} />
+              </div>
+              <div className="team-info-stats">
+                <div>
+                  <p>Team</p>
+                  <p>Base</p>
+                  <p>Team Chief</p>
+                  <p>Technical Chief</p>
+                  <p>Chassis</p>
+                  <p>Power Unit</p>
+                  <p>First Team Entry</p>
+                  <p>World Championships</p>
+                  <p>Highest Race Finish</p>
+                  <p>Pole Positions</p>
+                  <p>Fastest Laps</p>
+                </div>
+                {teamInfo && Object.keys(teamInfo).length > 0 &&
+                <div>
+                  <p>{teamInfo.name}</p>
+                  <p>{teamInfo.base}</p>
+                  <p>{teamInfo.director}</p>
+                  <p>{teamInfo.technical_manager}</p>
+                  <p>{teamInfo.chassis}</p>
+                  <p>{teamInfo.engine}</p>
+                  <p>{teamInfo.first_team_entry}</p>
+                  <p>{teamInfo.world_championships}</p>
+                  <p>{teamInfo.highest_race_finish.position}(x{teamInfo.highest_race_finish.number})</p>
+                  <p>{teamInfo.pole_positions}</p>
+                  <p>{teamInfo.fastest_laps}</p>
+                </div>
+                }
+              </div>
+            </div>
+            {teamDrivers && teamDrivers.length > 0 &&
+            <div className="team-drivers-links-div">
+              <div className="single-driver-div">
+              <Link to={`/drivers/${teamDrivers[0].driverId}`}>
+                <div className="single-driver-avatar-wrapper">
+                  <img src={`/images/drivers/${teamDrivers[0].code}.jpg`} alt={teamDrivers[0].driverId} />
+                </div>
+                <div className="single-driver-name">
+                  <p>{teamDrivers[0].permanentNumber}</p>
+                  <p>{teamDrivers[0].givenName} {teamDrivers[0].familyName}</p>
+                  {teamInfo && Object.keys(teamInfo).length > 0 &&
+                  <span>{teamInfo.name}</span>
+                  }
+                </div>
+              </Link>
+              </div>
+              <div className="single-driver-div">
+              <Link to={`/drivers/${teamDrivers[1].driverId}`}>
+                <div className="single-driver-avatar-wrapper">
+                  <img src={`/images/drivers/${teamDrivers[1].code}.jpg`} alt={teamDrivers[1].driverId} />
+                </div>
+                <div className="single-driver-name">
+                  <p>{teamDrivers[1].permanentNumber}</p>
+                  <p>{teamDrivers[1].givenName} {teamDrivers[1].familyName}</p>
+                  {teamInfo && Object.keys(teamInfo).length > 0 &&
+                  <span>{teamInfo.name}</span>
+                  }
+                </div>
+              </Link>
+              </div>
+            </div>
+            }
+          </section>
+        </div>
       </div>
-    </div>
+      <GoToTopBtn />
+    </ScrollToTop>
   )
 }

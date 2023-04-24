@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import GrandPrix from '../components/GrandPrix';
 import NextRace from '../components/NextRace';
 import Loading from '../components/Loading';
+import ScrollToTop from '../components/ScrollToTop';
+import GoToTopBtn from '../components/GoToTopBtn';
 import './Schedule.css'
 
 const url1 = 'https://ergast.com/api/f1/current.json';
@@ -58,23 +60,26 @@ export default function Schedule() {
   }
 
   return (
-    <div className="schedule-container">
-    {Object.keys(nextRace).length > 0 && 
-      <>
-        <div className="heading-container container-sm">
-          <h1 className="schedule-heading">F1 Schedule {nextRace.season}</h1>
-          <p>{nextRace.season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR</p>
-        </div>
-        <NextRace nextRace={nextRace} />
-      </>
-    }
-      <section className="grand-prix-grid container-sm">
-        {currentSeason.map((grandPrix, index) => {
-          return (
-            <GrandPrix key={grandPrix.Circuit.circuitId} grandPrix={grandPrix} index={index} />
-          )
-        })}
-      </section>
-    </div>
+    <ScrollToTop>
+      <div className="schedule-container">
+      {Object.keys(nextRace).length > 0 && 
+        <>
+          <div className="heading-container container-sm">
+            <h1 className="schedule-heading">F1 Schedule {nextRace.season}</h1>
+            <p>{nextRace.season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR</p>
+          </div>
+          <NextRace nextRace={nextRace} />
+        </>
+      }
+        <section className="grand-prix-grid container-sm">
+          {currentSeason.map((grandPrix, index) => {
+            return (
+              <GrandPrix key={grandPrix.Circuit.circuitId} grandPrix={grandPrix} index={index} />
+            )
+          })}
+        </section>
+      </div>
+      <GoToTopBtn />
+    </ScrollToTop>
   )
 }
