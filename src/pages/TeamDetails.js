@@ -73,36 +73,54 @@ export default function TeamDetails() {
               <div className="team-info-logo">
                 <img src={`/images/teams/${name}_logo_lg.jpg`} alt={name} />
               </div>
+              {teamInfo && Object.keys(teamInfo).length > 0 &&
               <div className="team-info-stats">
-                <div>
+                <div className="team-info-parameter">
                   <p>Team</p>
-                  <p>Base</p>
-                  <p>Team Chief</p>
-                  <p>Technical Chief</p>
-                  <p>Chassis</p>
-                  <p>Power Unit</p>
-                  <p>First Team Entry</p>
-                  <p>World Championships</p>
-                  <p>Highest Race Finish</p>
-                  <p>Pole Positions</p>
-                  <p>Fastest Laps</p>
-                </div>
-                {teamInfo && Object.keys(teamInfo).length > 0 &&
-                <div>
                   <p>{teamInfo.name}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Base</p>
                   <p>{teamInfo.base}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Team Chief</p>
                   <p>{teamInfo.director}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Technical Chief</p>
                   <p>{teamInfo.technical_manager}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Chassis</p>
                   <p>{teamInfo.chassis}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Power Unit</p>
                   <p>{teamInfo.engine}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>First Team Entry</p>
                   <p>{teamInfo.first_team_entry}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>World Championships</p>
                   <p>{teamInfo.world_championships}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Highest Race Finish</p>
                   <p>{teamInfo.highest_race_finish.position}(x{teamInfo.highest_race_finish.number})</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Pole Positions</p>
                   <p>{teamInfo.pole_positions}</p>
+                </div>
+                <div className="team-info-parameter">
+                  <p>Fastest Laps</p>
                   <p>{teamInfo.fastest_laps}</p>
                 </div>
-                }
               </div>
+              }
             </div>
             {teamDrivers && teamDrivers.length > 0 &&
             <div className="team-drivers-links-div">

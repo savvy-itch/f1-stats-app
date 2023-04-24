@@ -7,7 +7,7 @@
   display: flex;
   background-color: white;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 3rem;
 }
 .driver-image {
@@ -34,27 +34,28 @@
 }
 .driver-info {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   max-width: 48%;
+  width: 48%;
   padding: 1rem 2rem 0 0;
+}
+.driver-info-parameter {
+  margin: .5rem 0;
+}
+.driver-info-parameter p {
+  font-size: 1.2rem;
+}
+.driver-info-parameter > p:first-of-type {
+  font-weight: bold;
+}
+.driver-info-parameter > p:last-of-type {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 .driver-info > div {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
-.driver-info p {
-  margin: .5rem 0;
-  font-size: 1.2rem;
-}
-.driver-info > div:first-of-type {
-  font-weight: 700;
-  margin-right: 2rem;
-}
-.driver-info > div:last-of-type {
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .driver-bio {
   background-color: white;
   padding: 2rem;
@@ -99,8 +100,9 @@
   }
   .driver-info {
     padding: 0;
+    margin-top: .7rem;
   }
-  .driver-info p {
+  .driver-info-parameter p {
     font-size: 1rem;
   }
 }

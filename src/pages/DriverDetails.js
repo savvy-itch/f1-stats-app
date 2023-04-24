@@ -70,34 +70,50 @@ export default function DriverDetails() {
               </div>
               }
             </div>
+            {Object.keys(driverInfo).length > 0 && driverInfo.response && driverInfo.response.length > 0 &&
             <div className="driver-info">
-              <div>
+              <div className="driver-info-parameter">
                 <p>Team</p>
-                <p>Country</p>
-                <p>Podiums</p>
-                <p>Points</p>
-                <p>Grands Prix entered</p>
-                <p>World Championships</p>
-                <p>Highest race finish</p>
-                <p>Highest grid position</p>
-                <p>Date of birth</p>
-                <p>Place of birth</p>
-              </div>
-              {Object.keys(driverInfo).length > 0 && driverInfo.response && driverInfo.response.length > 0 &&
-              <div>
                 <p>{driverInfo.response[0].teams[0].team.name}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Country</p>
                 <p>{driverInfo.response[0].country.name}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Podiums</p>
                 <p>{driverInfo.response[0].podiums}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Points</p>
                 <p>{driverInfo.response[0].career_points}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Grands Prix entered</p>
                 <p>{driverInfo.response[0].grands_prix_entered}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>World Championships</p>
                 <p>{driverInfo.response[0].world_championships}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Highest race finish</p>
                 <p>{driverInfo.response[0].highest_race_finish.position}(x{driverInfo.response[0].highest_race_finish.number})</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Highest grid position</p>
                 <p>{driverInfo.response[0].highest_grid_position}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Date of birth</p>
                 <p>{driverInfo.response[0].birthdate}</p>
+              </div>
+              <div className="driver-info-parameter">
+                <p>Place of birth</p>
                 <p>{driverInfo.response[0].birthplace}</p>
               </div>
-              }
             </div>
+            }
           </div>
           <div className="driver-bio">
             <h2>Biography</h2>

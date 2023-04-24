@@ -3,6 +3,8 @@
 }
 .teleport-btn {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   bottom: 5vh;
   right: 10px;
@@ -17,6 +19,6 @@
 }
 @media screen and (max-width: 568px) {
   .show-teleport-btn {
-    display: block;
+    display: flex;
   }
 }
