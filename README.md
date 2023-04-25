@@ -1,10 +1,12 @@
 # F1 Stats
 This is a Formula 1 statistics React web app.
+
 [live version](https://f1-stats-react.netlify.app)
+
 *The design is based on the official F1 website.
 
 ### What does it do?
-You can view schedules for the upcoming F1 races as well the results of the previous ones, standings, fastest laps, view current teams, drivers and their info.
+You can view schedule for the upcoming F1 races as well the results of the previous ones, standings, fastest laps, view current teams, drivers and their info.
 
 ### Structure
 The website consists of the following pages:
@@ -60,5 +62,8 @@ All results are displayed as tables.
 The page is accessed when invalid url is being submitted. Contains a button to go back to the home page.
 
 ## Responsive features
+The website is fully responsive. On small screens navbbar turns into a dropdown menu; after scrolling down long enough the "Scroll to top" button appears.
+
 ## Libraries
 - React Router
+- React Icons
