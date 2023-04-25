@@ -7,7 +7,6 @@ export default function Driver({ driver }) {
   }
 
   return (
-    // <Link to={`/drivers/${driver.Driver.driverId}/${driver.Driver.givenName}/${driver.Driver.familyName}`}>
     <Link to={`/drivers/${driver.Driver.driverId}`}>
       <div className="driver-card">
         <fieldset style={onmouseover}>

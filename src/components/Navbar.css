@@ -192,7 +192,6 @@ body {
   transform: rotate(90deg);
 }
 .dropdown-menu {
-  /* background-color: var(--highlight-color); */
   width: 100%;
   height: auto;
   overflow: hidden;

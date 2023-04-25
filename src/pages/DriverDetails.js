@@ -19,6 +19,7 @@ export default function DriverDetails() {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [driverInfo, setDriverInfo] = useState({});
+  console.log(id);
 
   let modifiedId = id;
   // convert non-alphabetic ids for valid search results
@@ -60,7 +61,8 @@ export default function DriverDetails() {
             <div className="driver-image">
               <div className="driver-image-wrapper">
               {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
-                <img src={`images/drivers/${driverInfo.response[0].abbr}.jpg`} alt={driverInfo.response[0].name} />
+                // one of the responses in API has a bug, that's why condition with hardcoded value added
+                <img src={`images/drivers/${id === 'zhou' ? 'ZHO' : driverInfo.response[0].abbr}.jpg`} alt={driverInfo.response[0].name} />
               }
               </div>
               {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&

@@ -13,7 +13,6 @@ export default function Timer({ allResults }) {
   useEffect(() => {
     if (allResults.Races && allResults.Races.length > 0) {
       const futureDate = new Date(allResults.Races[0].Qualifying.date).getTime();
-      // const futureDate = new Date().getTime() + 10000;
 
       let countdown = setInterval(() => {
         const today = new Date().getTime();

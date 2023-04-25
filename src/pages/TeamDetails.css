@@ -21,7 +21,6 @@
   display: flex;
   flex-direction: column;
   max-width: 48%;
-  /* padding: 1rem 2rem 0 0; */
 }
 .team-info-logo {
   max-width: 50%;
