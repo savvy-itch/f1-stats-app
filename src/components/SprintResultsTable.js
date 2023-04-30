@@ -19,7 +19,7 @@ export default function SprintResultsTable({ results, schedule, getFormattedMont
         {results.Races && results.Races.length > 0 &&
         <button className="results-btn" 
           onClick={() => setShowResults(!showResults)}>
-          Results
+          <p>Results</p>
           <FaChevronDown className={`chevron-icon ${showResults ? 'chevron-icon--rotate' : ''}`} />
         </button>
         }
