@@ -50,7 +50,7 @@ export default function NextRace({ nextRace }) {
             <div className="divider-line"></div>
             <div className="next-race-time">
               {/* if there's a sprint element in race qualifying */}
-              {race.Sprint.date && 
+              {race.Sprint?.date && 
                 <div>
                   <p>sprint:</p>
                   <div className="stage-weekday">{getWeekday(race.Sprint.date)}</div>
