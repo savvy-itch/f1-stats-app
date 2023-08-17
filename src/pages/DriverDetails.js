@@ -19,7 +19,6 @@ export default function DriverDetails() {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [driverInfo, setDriverInfo] = useState({});
-  console.log(id);
 
   let modifiedId = id;
   // convert non-alphabetic ids for valid search results
@@ -37,6 +36,28 @@ export default function DriverDetails() {
     } catch (error) {
       setLoading(false);
       console.log(error);
+    }
+  }
+
+  // TEMPORARY FIX:
+  // abbr property has missing values in API response. Change to other properties
+  let imgSrc = '';
+  if (Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0) {
+    switch (id) {
+      case 'zhou':
+        imgSrc = 'images/drivers/ZHO.jpg';
+        break;
+      case 'piastri':
+        imgSrc = 'images/drivers/PIA.jpg';
+        break;
+      case 'sargeant':
+        imgSrc = 'images/drivers/SAR.jpg';
+        break;
+      case 'de_vries':
+        imgSrc = 'images/drivers/DEV.jpg';
+        break;
+      default:
+        imgSrc = `images/drivers/${driverInfo.response[0].abbr}.jpg`;
     }
   }
 
@@ -60,10 +81,7 @@ export default function DriverDetails() {
           <div className="driver-info-container">
             <div className="driver-image">
               <div className="driver-image-wrapper">
-              {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
-                // one of the responses in API has a bug, that's why condition with hardcoded value added
-                <img src={`images/drivers/${id === 'zhou' ? 'ZHO' : driverInfo.response[0].abbr}.jpg`} alt={driverInfo.response[0].name} />
-              }
+                <img src={imgSrc} alt={driverInfo.response[0].name} />
               </div>
               {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
               <div>

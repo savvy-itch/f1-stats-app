@@ -271,6 +271,20 @@ export const driversSublinks = [
       'After De Vries’ phone stopped buzzing post-Monza, it was AlphaTauri who won out in the battle to secure his services – Red Bull advisor Helmut Marko spending two days chatting and dining with De Vries in Austria on the suggestion of fellow countryman Max Verstappen.',
       'An older F1 rookie than many before him, De Vries will be looking to combine the extra experience he has gained over the years with his unquestionable pace and ensure that the sport becomes home for the peak phase of his motor racing career.'
     ]
+  },
+  {
+    id: 'ricciardo',
+    name: 'Daniel',
+    surname: 'Ricciardo',
+    teamId: 'alphatauri',
+    bio: [
+      'The self-styled “Honey Badger” is fuzzy on the outside and feisty on the inside. Drivers beware because behind Ricciardo’s laidback persona and big grin is a razor-sharp racer with a bite.',
+      'The Australian combines all-out speed with impressive race craft. Never afraid to push to the limits if it means pulling off a pass, Ricciardo is a proven race-winner, capable of consistently finishing at the business end of the championship table given the right machinery.',
+      'A regular podium-finisher in his days with Red Bull, Ricciardo has christened the steps around the world with a dousing of Aussie culture – the ‘Shoey’ – as he quaffed champagne from a soggy racing boot. Yes it’s goofy, but the trademark celebration illustrates why he is loved for his sense of humour but never underestimated on track.',
+      'His career’s next moves to Renault’s works team in 2019 and then McLaren for 2021 brought fresh challenges for the Perth pilot, but failed to deliver his dream of following Jack Brabham and Alan Jones as the next world champion from Down Under – and left him off the grid for the start of 2023.',
+      'But he soon found a way back, returning to Red Bull in a third driver role and then impressing sufficiently to land a race seat with sister squad AlphaTauri from round 12 onwards, replacing Nyck de Vries as Yuki Tsunoda’s team mate.', 
+      'Whatever happens next, Ricciardo is sure to keep on smiling.'
+    ]
   }
 ];
 export const teamsSublinks = [
@@ -315,3 +329,5 @@ export const teamsSublinks = [
     code: 'mclaren',
   },
 ]
+
+// de Vries expelled from the team mid-season
