@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="footer-contact">
           <h3>Contact</h3>
           <div className="contact-links">
-            <a href="https://github.com/spr0neInBlazer" target='_blank'>
+            <a href="https://github.com/savvy-itch" target='_blank'>
               <FaGithub />
             </a>
             <a href="mailto:sprone3@gmail.com">
