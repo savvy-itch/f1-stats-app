@@ -81,7 +81,7 @@ export default function DriverDetails() {
           <div className="driver-info-container">
             <div className="driver-image">
               <div className="driver-image-wrapper">
-                <img src={imgSrc} alt={driverInfo.response[0].name} />
+                <img src={imgSrc} alt={driverInfo.response?.[0]?.name} />
               </div>
               {Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0 &&
               <div>

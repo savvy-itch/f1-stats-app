@@ -17,20 +17,20 @@ export default function Footer() {
         </div>
         <div className="footer-column">
           <h3>References</h3>
-          <a href="https://www.formula1.com" target='_blank'>The official Formula 1 website</a>
-          <a href="https://ergast.com/mrd/terms/" target='_blank'>Ergast API</a>
-          <a href="https://api-sports.io/documentation/formula-1/v1" target='_blank'>API-FORMULA-1</a>
+          <a href="https://www.formula1.com" target='_blank' rel="noopener noreferrer">The official Formula 1 website</a>
+          <a href="https://ergast.com/mrd/terms/" target='_blank' rel="noopener noreferrer">Ergast API</a>
+          <a href="https://api-sports.io/documentation/formula-1/v1" target='_blank' rel="noopener noreferrer">API-FORMULA-1</a>
         </div>
         <div className="footer-contact">
           <h3>Contact</h3>
           <div className="contact-links">
-            <a href="https://github.com/savvy-itch" target='_blank'>
+            <a href="https://github.com/savvy-itch" target='_blank' rel="noopener noreferrer">
               <FaGithub />
             </a>
             <a href="mailto:sprone3@gmail.com">
               <GrMail />
             </a>
-            <a href="https://www.linkedin.com/in/михайло-савич-a31366248/" target='_blank'>
+            <a href="https://www.linkedin.com/in/михайло-савич-a31366248/" target='_blank' rel="noopener noreferrer">
               <FaLinkedin />
             </a>
           </div>
