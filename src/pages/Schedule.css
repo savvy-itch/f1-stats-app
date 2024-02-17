@@ -158,7 +158,7 @@
   font-family: 'F1 Bold', sans-serif;
   font-size: 1.1rem;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .grand-prix-name {
   font-size: .9rem;

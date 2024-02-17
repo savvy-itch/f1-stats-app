@@ -40,6 +40,7 @@ export default function RaceDetails() {
     fetchResults(`${qualifyingResultsURL}${id}/qualifying.json`, setQualificationResults);
     fetchResults(`${sprintResultsURL}${id}/sprint.json`, setSprintResults);
     fetchResults(`${resultsURL}${round}.json`, setAllResults);
+    console.log(allResults)
     setLoading(false);
   }, []);
 

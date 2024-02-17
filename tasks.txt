@@ -1,0 +1,7 @@
+- update teams, colors
+- update drivers, images
+- update cars
+- update current season
+- implement caching
+- add custom favicon
+- optimize the app

@@ -216,7 +216,7 @@
 .tab-podium {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   margin-top: 6rem;
   margin-bottom: 1rem;
 }
