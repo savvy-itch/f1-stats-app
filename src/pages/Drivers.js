@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Loading from '../components/Loading';
 import Driver from '../components/Driver';
 import ScrollToTop from '../components/ScrollToTop';
@@ -7,28 +8,23 @@ import './Drivers.css'
 
 const DRIVERS_URL = 'https://ergast.com/api/f1/current/driverStandings.json';
 
-export default function Drivers() {
-  const [loading, setLoading] = useState(false);
-  const [drivers, setDrivers] = useState([]);
-
-  async function fetchDrivers(url) {
-    try {
-      setLoading(true);
-      const response = await fetch(url);
-      const drivers = await response.json();
-      setDrivers(drivers.MRData.StandingsTable.StandingsLists[0]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+async function fetchDrivers() {
+  try {
+    const response = await fetch(DRIVERS_URL);
+    const drivers = await response.json();
+    return drivers.MRData.StandingsTable.StandingsLists[0]
+  } catch (error) {
+    console.log(error);
   }
+}
 
-  useEffect(() => {
-    fetchDrivers(DRIVERS_URL);
-  }, []);
+export default function Drivers() {
+  const { data: drivers, isLoading } = useQuery({
+    queryKey: ['drivers'],
+    queryFn: fetchDrivers,
+  });
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="loading-container">
         <Loading />

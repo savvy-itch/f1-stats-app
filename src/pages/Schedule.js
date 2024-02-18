@@ -1,57 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GrandPrix from '../components/GrandPrix';
 import NextRace from '../components/NextRace';
 import Loading from '../components/Loading';
 import ScrollToTop from '../components/ScrollToTop';
 import GoToTopBtn from '../components/GoToTopBtn';
 import './Schedule.css'
+import { currentResultsUrl } from '../globals';
+import { useQuery } from '@tanstack/react-query';
 
-const url1 = 'https://ergast.com/api/f1/current.json';
 const nextRaceUrl = 'https://ergast.com/api/f1/current/next.json'
 
 export default function Schedule() {
-  const [loading, setLoading] = useState(false);
-  const [currentSeason, setCurrentSeason] = useState([]);
-  const [nextRace, setNextRace] = useState({});
-  // all the clickable race links
-  const [racesLinks, setRacesLinks] = useState([]);
+  const { data: races, isLoading: isRacesLoading } = useQuery({
+    queryKey: ['races'],
+    queryFn: fetchData,
+  });
+  const { data: nextRace, isLoading: isNextRaceLoading } = useQuery({
+    queryKey: ['nextRace'],
+    queryFn: fetchNextRace,
+  });
 
-  function fetchData1() {
-    setLoading(true);
-    return fetch(url1)
+  function fetchData() {
+    return fetch(`${currentResultsUrl}.json`)
     .then(response => response.json())
     .then(currentSeason => {
-      setCurrentSeason(currentSeason.MRData.RaceTable.Races);
-      const newRaces = currentSeason.MRData.RaceTable.Races.map(obj => 
-        ({id: obj.Circuit.circuitId, raceName: obj.raceName}));
-      setRacesLinks(newRaces);
-      setLoading(false);
+      return currentSeason.MRData.RaceTable.Races;
     })
     .catch(err => {
-      setLoading(false);
       console.error(err)
     });
   }
 
   async function fetchNextRace() {
-    setLoading(true);
     try {
       const response = await fetch(nextRaceUrl);
       const nextRace = await response.json();
-      setNextRace(nextRace.MRData.RaceTable);
-      setLoading(false);
+      console.log(nextRace.MRData.RaceTable);
+      return nextRace.MRData.RaceTable;
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   }
 
-  useEffect(() => {
-    fetchData1();
-    fetchNextRace();
-  }, []);
-
-  if (loading) {
+  if (isRacesLoading || isNextRaceLoading) {
     return (
       <div className="loading-container">
         <Loading />
@@ -72,7 +63,7 @@ export default function Schedule() {
         </>
       }
         <section className="grand-prix-grid container-sm">
-          {currentSeason.map((grandPrix, index) => {
+          {races.map((grandPrix, index) => {
             return (
               <GrandPrix key={grandPrix.Circuit.circuitId} grandPrix={grandPrix} index={index} />
             )

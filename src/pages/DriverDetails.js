@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import Loading from '../components/Loading';
 import { driversSublinks } from '../navbarContent';
 import ScrollToTop from '../components/ScrollToTop';
@@ -16,9 +17,12 @@ const headers = {
 }
 
 export default function DriverDetails() {
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  const [driverInfo, setDriverInfo] = useState({});
+
+  const { data: driverInfo, isLoading } = useQuery({
+    queryKey: [`${id}Info`],
+    queryFn: () => fetchDriverInfo(driverURL, modifiedId),
+  })
 
   let modifiedId = id;
   // convert non-alphabetic ids for valid search results
@@ -26,15 +30,13 @@ export default function DriverDetails() {
     modifiedId = id.split('_').join(' ');
   }
 
-  async function fetchDriverInfo(url) {
+  async function fetchDriverInfo(url, modifiedId) {
     try {
-      setLoading(true);
       const response = await fetch(`${url}=${modifiedId}`, headers);
       const driver = await response.json();
-      setDriverInfo(driver);
-      setLoading(false);
+      console.log(driver);
+      return driver;
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   }
@@ -42,7 +44,7 @@ export default function DriverDetails() {
   // TEMPORARY FIX:
   // abbr property has missing values in API response. Change to other properties
   let imgSrc = '';
-  if (Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0) {
+  if (driverInfo && Object.keys(driverInfo).length > 0 && driverInfo.response.length > 0) {
     switch (id) {
       case 'zhou':
         imgSrc = 'images/drivers/ZHO.jpg';
@@ -61,12 +63,7 @@ export default function DriverDetails() {
     }
   }
 
-  // id added as a dependency for navbar links to work
-  useEffect(() => {
-    fetchDriverInfo(driverURL);
-  }, [id]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="loading-container">
         <Loading />

@@ -4,8 +4,7 @@ import Team from '../components/Team';
 import ScrollToTop from '../components/ScrollToTop';
 import GoToTopBtn from '../components/GoToTopBtn';
 import './Teams.css';
-
-const TEAMS_URL = 'https://ergast.com/api/f1/current/constructorStandings.json';
+import { constructorStandingsUrl } from '../globals';
 
 export default function Teams() {
   const [loading, setLoading] = useState(false);
@@ -25,7 +24,7 @@ export default function Teams() {
   }
 
   useEffect(() => {
-    fetchTeams(TEAMS_URL);
+    fetchTeams(constructorStandingsUrl);
   }, []);
 
   if (loading) {

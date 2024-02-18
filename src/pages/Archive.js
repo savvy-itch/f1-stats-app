@@ -66,7 +66,7 @@ export default function Archive() {
   }
 
   // RESULTS
-  async function fetchResults(url, dynamicCategory) {
+  async function fetchResults(url) {
     try {
       setLoading(true);
       const response = await fetch(url);
@@ -85,20 +85,20 @@ export default function Archive() {
       case "races":
         fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
           ? 'results/1.json'
-          : `circuits/${dynamicCategory}/results.json`}`, dynamicCategory);
+          : `circuits/${dynamicCategory}/results.json`}`);
         break;
       case "fastest":
-        fetchResults(`${BASE_URL}/${year}/fastest/1/results.json`, dynamicCategory);
+        fetchResults(`${BASE_URL}/${year}/fastest/1/results.json`);
         break;
       case "drivers":
         fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
           ? 'driverStandings.json'
-          : `drivers/${dynamicCategory}/results.json`}`, dynamicCategory);
+          : `drivers/${dynamicCategory}/results.json`}`);
         break;
       case "teams":
         fetchResults(`${BASE_URL}/${year}/${dynamicCategory === 'all'
           ? 'constructorStandings.json'
-          : `constructors/${dynamicCategory}/results.json`}`, dynamicCategory);
+          : `constructors/${dynamicCategory}/results.json`}`);
         break;
       default:
         break;
