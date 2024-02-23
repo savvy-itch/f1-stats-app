@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ScrollToTop from '../components/ScrollToTop';
 import GoToTopBtn from '../components/GoToTopBtn';
 import './TeamDetails.css';
+import { useQuery } from '@tanstack/react-query';
 
 const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
 const TEAM_INFO_URL = 'https://v1.formula-1.api-sports.io/teams?search';
@@ -11,49 +12,42 @@ const headers = {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "api-formula-1.p.rapidapi.com",
-		"x-apisports-key": "51482715129beb99b4d1186651ad73a8"
+		"x-apisports-key": process.env.REACT_APP_APISPORTS_KEY
+  }
+}
+
+async function fetchTeamInfo(url) {
+  try {
+    const response = await fetch(url, headers);
+    const teamInfo = await response.json();
+    return teamInfo.response[0];
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function fetchTeamDrivers(url) {
+  try {
+    const response = await fetch(url);
+    const teamDrivers = await response.json();
+    return teamDrivers.MRData.DriverTable.Drivers;
+  } catch (error) {
+    console.log(error);
   }
 }
 
 export default function TeamDetails() {
-  const [loading, setLoading] = useState(false);
   const { id, name } = useParams();
-  const [teamInfo, setTeamInfo] = useState();
-  const [teamDrivers, setTeamDrivers] = useState([]);
+  const { data: teamInfo, isLoading: isTeamInfoLoading } = useQuery({
+    queryKey: [`${id}Info`],
+    queryFn: () => fetchTeamInfo(`${TEAM_INFO_URL}=${name}`)
+  });
+  const { data: teamDrivers, isLoading: isTeamDriversLoading } = useQuery({
+    queryKey: [`${id}Drivers`],
+    queryFn: () => fetchTeamDrivers(`${TEAM_DRIVERS_URL}${id}/drivers.json`)
+  });
 
-  async function fetchTeamInfo(url) {
-    try {
-      setLoading(true);
-      const response = await fetch(url, headers);
-      const teamInfo = await response.json();
-      setTeamInfo(teamInfo.response[0]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-
-  async function fetchTeamDrivers(url) {
-    try {
-      setLoading(true);
-      const response = await fetch(url);
-      const teamDrivers = await response.json();
-      setTeamDrivers(teamDrivers.MRData.DriverTable.Drivers);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-
-  // id added as a dependency for navbar links to work
-  useEffect(() => {
-    fetchTeamInfo(`${TEAM_INFO_URL}=${name}`);
-    fetchTeamDrivers(`${TEAM_DRIVERS_URL}${id}/drivers.json`);
-  }, [id]);
-
-  if (loading) {
+  if (isTeamInfoLoading || isTeamDriversLoading) {
     return (
       <div className="loading-container">
         <Loading />

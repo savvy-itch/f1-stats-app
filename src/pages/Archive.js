@@ -6,10 +6,13 @@ import GoToTopBtn from '../components/GoToTopBtn';
 import './Archive.css';
 
 const BASE_URL = 'https://ergast.com/api/f1';
+const firstSeason = 2004; // the oldest that the API provides
+const currentSeason = 2024;
+const numOfSeasons = Array.from({ length: currentSeason - firstSeason + 1 }, (k,v) => currentSeason - v);
 
 export default function Archive() {
   const [loading, setLoading] = useState(false);
-  const [year, setYear] = useState('2004');
+  const [year, setYear] = useState(currentSeason - 1);
   const [category, setCategory] = useState('races');
   const [dynamicCategoriesList, setDynamicCategoriesList] = useState([]);
   const [dynamicCategory, setDynamicCategory] = useState('all');
@@ -122,36 +125,19 @@ export default function Archive() {
       <div className="archive-body-container">
         <div className="archive-container container-lg">
           <section className="search-field">
-            <select name="" id="" value={year} onChange={handleYearChange}>
-              <option value="2004">2004</option>
-              <option value="2005">2005</option>
-              <option value="2006">2006</option>
-              <option value="2007">2007</option>
-              <option value="2008">2008</option>
-              <option value="2009">2009</option>
-              <option value="2010">2010</option>
-              <option value="2011">2011</option>
-              <option value="2012">2012</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
+            <select name="year-category" id="year-category" value={year} onChange={handleYearChange}>
+              {numOfSeasons.map(year => {
+                return <option key={year} value={year}>{year}</option> 
+              })}
             </select>
-            <select name="" id="" value={category} onChange={handleCategoryChange}>
+            <select name="type-category" id="type-category" value={category} onChange={handleCategoryChange}>
               <option value="races">Races</option>
               <option value="drivers">Drivers</option>
               <option value="teams">Teams</option>
               <option value="fastest">Fastest Laps</option>
             </select>
             {/* no dynamic categories for fastest laps */}
-            <select name="" id="" value={dynamicCategory} onChange={handleDynamicCategoryChange}>
+            <select name="dynamic-category" id="dynamic-category" value={dynamicCategory} onChange={handleDynamicCategoryChange}>
             {category === 'fastest' 
               ? null 
               : <option value="all">All</option>

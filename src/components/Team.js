@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
 const TEAM_DRIVERS_URL = 'https://ergast.com/api/f1/current/constructors/';
 
+async function fetchTeamDrivers(url) {
+  try {
+    const response = await fetch(url);
+    const teamDrivers = await response.json();
+    return teamDrivers.MRData.DriverTable.Drivers;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function Team({ constructor }) {
-  const [teamDrivers, setTeamDrivers] = useState([]);
+  const { data: teamDrivers } = useQuery({
+    queryKey: [`${constructor.Constructor.constructorId}Drivers`],
+    queryFn: () => fetchTeamDrivers(`${TEAM_DRIVERS_URL}${constructor.Constructor.constructorId}/drivers.json`)
+  })
   const onmouseover = {
     color: `var(--${constructor.Constructor.constructorId}_color)`,
   }
-
-  async function fetchTeamDrivers(url) {
-    try {
-      const response = await fetch(url);
-      const teamDrivers = await response.json();
-      setTeamDrivers(teamDrivers.MRData.DriverTable.Drivers);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchTeamDrivers(`${TEAM_DRIVERS_URL}${constructor.Constructor.constructorId}/drivers.json`);
-  }, []);
 
   return (
     <Link to={`/teams/${constructor.Constructor.constructorId}/${constructor.Constructor.name}`}>

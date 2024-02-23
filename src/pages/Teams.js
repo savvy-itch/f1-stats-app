@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Loading from '../components/Loading';
 import Team from '../components/Team';
 import ScrollToTop from '../components/ScrollToTop';
 import GoToTopBtn from '../components/GoToTopBtn';
 import './Teams.css';
 import { constructorStandingsUrl } from '../globals';
+import { useQuery } from '@tanstack/react-query';
+
+async function fetchTeams(url) {
+  try {
+    const response = await fetch(url);
+    const teams = await response.json();
+    return teams.MRData.StandingsTable.StandingsLists[0];
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export default function Teams() {
-  const [loading, setLoading] = useState(false);
-  const [teams, setTeams] = useState([]);
+  const { data: teams, isLoading } = useQuery({
+    queryKey: ['teams'],
+    queryFn: () => fetchTeams(constructorStandingsUrl)
+  })
 
-  async function fetchTeams(url) {
-    try {
-      setLoading(true);
-      const response = await fetch(url);
-      const teams = await response.json();
-      setTeams(teams.MRData.StandingsTable.StandingsLists[0]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchTeams(constructorStandingsUrl);
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="loading-container">
         <Loading />

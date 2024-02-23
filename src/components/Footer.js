@@ -16,21 +16,21 @@ export default function Footer() {
           <Link to="/archive">Archive</Link>
         </div>
         <div className="footer-column">
-          <h3>References</h3>
+          <h2>References</h2>
           <a href="https://www.formula1.com" target='_blank' rel="noopener noreferrer">The official Formula 1 website</a>
           <a href="https://ergast.com/mrd/terms/" target='_blank' rel="noopener noreferrer">Ergast API</a>
           <a href="https://api-sports.io/documentation/formula-1/v1" target='_blank' rel="noopener noreferrer">API-FORMULA-1</a>
         </div>
         <div className="footer-contact">
-          <h3>Contact</h3>
+          <h2>Contact</h2>
           <div className="contact-links">
-            <a href="https://github.com/savvy-itch" target='_blank' rel="noopener noreferrer">
+            <a href="https://github.com/savvy-itch" title="Github" target='_blank' rel="noopener noreferrer">
               <FaGithub />
             </a>
-            <a href="mailto:sprone3@gmail.com">
+            <a href="mailto:sprone3@gmail.com" title="Email">
               <GrMail />
             </a>
-            <a href="https://www.linkedin.com/in/михайло-савич-a31366248/" target='_blank' rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/михайло-савич-a31366248/" title="Linkedin" target='_blank' rel="noopener noreferrer">
               <FaLinkedin />
             </a>
           </div>
